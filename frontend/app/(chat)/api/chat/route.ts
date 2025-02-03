@@ -3,46 +3,35 @@ import {
   createDataStreamResponse,
   smoothStream,
   streamText,
-} from 'ai';
+} from "ai";
 
-import { auth } from '@/app/(auth)/auth';
-import { customModel } from '@/lib/ai';
-import { models } from '@/lib/ai/models';
-import { systemPrompt } from '@/lib/ai/prompts';
+import { auth } from "@/app/(auth)/auth";
+import { customModel } from "@/lib/ai";
+import { models } from "@/lib/ai/models";
+import { systemPrompt } from "@/lib/ai/prompts";
 import {
   deleteChatById,
   getChatById,
   saveChat,
   saveMessages,
-} from '@/lib/db/queries';
+} from "@/lib/db/queries";
 import {
   generateUUID,
   getMostRecentUserMessage,
   sanitizeResponseMessages,
-} from '@/lib/utils';
+} from "@/lib/utils";
 
-import { generateTitleFromUserMessage } from '../../actions';
-import { createDocument } from '@/lib/ai/tools/create-document';
-import { updateDocument } from '@/lib/ai/tools/update-document';
-import { requestSuggestions } from '@/lib/ai/tools/request-suggestions';
-import { getWeather } from '@/lib/ai/tools/get-weather';
+import { generateTitleFromUserMessage } from "../../actions";
+import { symbol, z } from "zod";
+import getCoinPrice from "@/lib/ai/tools/get-coin-price";
 
 export const maxDuration = 60;
 
-type AllowedTools =
-  | 'createDocument'
-  | 'updateDocument'
-  | 'requestSuggestions'
-  | 'getWeather';
+type AllowedTools = "getCoinPrice";
 
-const blocksTools: AllowedTools[] = [
-  'createDocument',
-  'updateDocument',
-  'requestSuggestions',
-];
+const cryptTools: AllowedTools[] = ["getCoinPrice"];
 
-const weatherTools: AllowedTools[] = ['getWeather'];
-const allTools: AllowedTools[] = [...blocksTools, ...weatherTools];
+const allTools: AllowedTools[] = [...cryptTools];
 
 export async function POST(request: Request) {
   const {
@@ -55,19 +44,19 @@ export async function POST(request: Request) {
   const session = await auth();
 
   if (!session || !session.user || !session.user.id) {
-    return new Response('Unauthorized', { status: 401 });
+    return new Response("Unauthorized", { status: 401 });
   }
 
   const model = models.find((model) => model.id === modelId);
 
   if (!model) {
-    return new Response('Model not found', { status: 404 });
+    return new Response("Model not found", { status: 404 });
   }
 
   const userMessage = getMostRecentUserMessage(messages);
 
   if (!userMessage) {
-    return new Response('No user message found', { status: 400 });
+    return new Response("No user message found", { status: 400 });
   }
 
   const chat = await getChatById({ id });
@@ -89,17 +78,22 @@ export async function POST(request: Request) {
         messages,
         maxSteps: 5,
         experimental_activeTools: allTools,
-        experimental_transform: smoothStream({ chunking: 'word' }),
-        experimental_generateMessageId: generateUUID,
         tools: {
-          getWeather,
-          createDocument: createDocument({ session, dataStream, model }),
-          updateDocument: updateDocument({ session, dataStream, model }),
-          requestSuggestions: requestSuggestions({
-            session,
-            dataStream,
-            model,
-          }),
+          getCoinPrice: {
+            description:
+              "Call this tool to get the current price any amount of any coin in USD. pass the amount to convert, and the coin id or the coin symbol.",
+            parameters: z.object({
+              amount: z.string().describe("the amount to be converted"),
+              id: z.number().describe("the coin id which is a number"),
+            }),
+            execute: async ({ amount, symbol, id }) => {
+              const context = await getCoinPrice(amount, id);
+              return {
+                success: true,
+                context: context,
+              };
+            },
+          },
         },
         onFinish: async ({ response }) => {
           if (session.user?.id) {
@@ -117,17 +111,17 @@ export async function POST(request: Request) {
                       content: message.content,
                       createdAt: new Date(),
                     };
-                  },
+                  }
                 ),
               });
             } catch (error) {
-              console.error('Failed to save chat');
+              console.error("Failed to save chat");
             }
           }
         },
         experimental_telemetry: {
           isEnabled: true,
-          functionId: 'stream-text',
+          functionId: "stream-text",
         },
       });
 
@@ -138,30 +132,30 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
-  const id = searchParams.get('id');
+  const id = searchParams.get("id");
 
   if (!id) {
-    return new Response('Not Found', { status: 404 });
+    return new Response("Not Found", { status: 404 });
   }
 
   const session = await auth();
 
   if (!session || !session.user) {
-    return new Response('Unauthorized', { status: 401 });
+    return new Response("Unauthorized", { status: 401 });
   }
 
   try {
     const chat = await getChatById({ id });
 
     if (chat.userId !== session.user.id) {
-      return new Response('Unauthorized', { status: 401 });
+      return new Response("Unauthorized", { status: 401 });
     }
 
     await deleteChatById({ id });
 
-    return new Response('Chat deleted', { status: 200 });
+    return new Response("Chat deleted", { status: 200 });
   } catch (error) {
-    return new Response('An error occurred while processing your request', {
+    return new Response("An error occurred while processing your request", {
       status: 500,
     });
   }
