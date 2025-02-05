@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useConnectWallet, useWallets } from '@privy-io/react-auth';
 import { useEffect } from 'react';
+//@ts-ignore
 import Cookies from 'js-cookie';
 
 export function WalletConnectButton() {
