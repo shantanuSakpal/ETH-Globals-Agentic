@@ -64,7 +64,7 @@ export function AppSidebar({ user }: { user: User | undefined }) {
               className="w-full bg-white hover:bg-accent/10 justify-between px-4 text-black flex items-center"
               onClick={() => {
                 setOpenMobile(false);
-                router.push('/trade');
+                router.push('/manage-bots');
               }}
             >
               <span>Manage Bots</span>

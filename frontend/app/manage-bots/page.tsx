@@ -29,7 +29,6 @@ export default function TradingPage() {
 
   const handleFormChange = (newData: TradingFormData) => {
     setFormData(newData)
-    // Update summary data based on form changes
     setSummaryData({
       ...summaryData,
       yourLoop: newData.loopMultiplier,
@@ -41,7 +40,6 @@ export default function TradingPage() {
   const handleConfirm = async () => {
     setIsLoading(true)
     try {
-      // Add your confirmation logic here
       await new Promise((resolve) => setTimeout(resolve, 1000))
       console.log("Confirmed:", formData)
     } finally {
@@ -50,14 +48,13 @@ export default function TradingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+      <div className="container mx-auto px-4  py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ml-[10%] max-w-full mx-auto">
           <TradingForm data={formData} onChange={handleFormChange} />
-          <Summary data={summaryData} onConfirm={handleConfirm} isLoading={isLoading} />
+           <Summary data={summaryData} onConfirm={handleConfirm} isLoading={isLoading} />
         </div>
       </div>
     </div>
   )
 }
-
