@@ -1,13 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+import asyncio
 from api.routes import strategy, position, market
 from api.middleware.auth import auth_middleware
+from api.websocket import router as ws_router
+from backend.core.manager.agent import AgentManager
 from config.settings import get_settings
 from config.logging import setup_logging
 
 # Setup logging
 setup_logging()
+settings = get_settings()
+
+# Initialize services
+agent_manager = AgentManager()
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -16,10 +23,10 @@ app = FastAPI(
     version="0.0.1"
 )
 
-# CORS middleware configuration
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,9 +39,20 @@ app.middleware("http")(auth_middleware)
 app.include_router(strategy.router, prefix="/api/strategy", tags=["strategy"])
 app.include_router(position.router, prefix="/api/position", tags=["position"])
 app.include_router(market.router, prefix="/api/market", tags=["market"])
+app.include_router(ws_router, prefix="/ws", tags=["websocket"])
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize and start agent manager on app startup"""
+    await agent_manager.initialize()
+    asyncio.create_task(agent_manager.run_agents())
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Cleanup on app shutdown"""
+    await agent_manager.shutdown()
 
 if __name__ == "__main__":
-    settings = get_settings()
     uvicorn.run(
         "main:app",
         host=settings.HOST,

@@ -6,7 +6,7 @@ from models.api import (
     StrategyResponse,
     StrategyList
 )
-from agents.morpho_agent import MorphoAgent
+from backend.agents.morpho.agent import MorphoAgent
 from config.settings import get_settings
 import logging
 

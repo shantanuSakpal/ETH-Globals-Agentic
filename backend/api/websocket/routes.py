@@ -1,7 +1,7 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends
 from typing import Optional
 from .manager import ConnectionManager
-from agents.morpho_agent import MorphoAgent
+from backend.agents.morpho.agent import MorphoAgent
 from models.websocket import WSMessage
 import logging
 

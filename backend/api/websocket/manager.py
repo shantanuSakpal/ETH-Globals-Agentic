@@ -1,54 +1,47 @@
 from fastapi import WebSocket
-from typing import Set, Dict, Any
+from typing import Dict, Set, Any
 import logging
-import json
-from enum import Enum
+from datetime import datetime
+from models.websocket import WSMessage, WSMessageType
 
 logger = logging.getLogger(__name__)
 
-class ConnectionManager:
+class WebSocketManager:
     def __init__(self):
-        self.active_connections: Set[WebSocket] = set()
-        self.connection_metadata: Dict[WebSocket, Dict[str, Any]] = {}
+        self.active_connections: Dict[str, WebSocket] = {}
+        self.subscriptions: Dict[str, Set[str]] = {}
+        self.connection_metadata: Dict[str, Dict[str, Any]] = {}
 
-    async def connect(self, websocket: WebSocket, client_id: str = None):
-        """Connect new client and store metadata"""
+    async def connect(self, websocket: WebSocket, client_id: str):
         await websocket.accept()
-        self.active_connections.add(websocket)
-        self.connection_metadata[websocket] = {
-            "client_id": client_id,
+        self.active_connections[client_id] = websocket
+        self.subscriptions[client_id] = set()
+        self.connection_metadata[client_id] = {
             "connected_at": datetime.now().isoformat(),
             "message_count": 0
         }
-        logger.info(f"New client connected. Total connections: {len(self.active_connections)}")
+        logger.info(f"Client {client_id} connected")
 
-    async def disconnect(self, websocket: WebSocket):
-        """Disconnect client and cleanup"""
-        self.active_connections.remove(websocket)
-        self.connection_metadata.pop(websocket, None)
-        logger.info(f"Client disconnected. Remaining connections: {len(self.active_connections)}")
+    async def disconnect(self, client_id: str):
+        if client_id in self.active_connections:
+            del self.active_connections[client_id]
+            del self.subscriptions[client_id]
+            del self.connection_metadata[client_id]
+            logger.info(f"Client {client_id} disconnected")
 
-    async def broadcast(self, message_type: str, data: Dict[str, Any]):
-        """Broadcast message to all connected clients"""
-        disconnected = set()
-        message = self._format_message(message_type, data)
-        
-        for connection in self.active_connections:
+    async def broadcast(self, message_type: WSMessageType, data: Dict[str, Any]):
+        disconnected = []
+        for client_id, websocket in self.active_connections.items():
             try:
-                await connection.send_json(message)
-                self.connection_metadata[connection]["message_count"] += 1
+                await websocket.send_json({
+                    "type": message_type,
+                    "data": data,
+                    "timestamp": datetime.now().isoformat()
+                })
+                self.connection_metadata[client_id]["message_count"] += 1
             except Exception as e:
-                logger.error(f"Error broadcasting to client: {str(e)}")
-                disconnected.add(connection)
-                
-        # Cleanup disconnected clients
-        for connection in disconnected:
-            await self.disconnect(connection)
+                logger.error(f"Error broadcasting to {client_id}: {str(e)}")
+                disconnected.append(client_id)
 
-    def _format_message(self, message_type: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Format message with standard structure"""
-        return {
-            "type": message_type,
-            "data": data,
-            "timestamp": datetime.now().isoformat()
-        }
+        for client_id in disconnected:
+            await self.disconnect(client_id)
