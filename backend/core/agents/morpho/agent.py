@@ -1,5 +1,7 @@
 from datetime import datetime
 from typing import Dict, Any, Optional, Set, List
+
+from cdp import Wallet
 from backend.core.agents.morpho.actions.repay import MORPHO_REPAY_PROMPT, morpho_repay
 from fastapi import WebSocket
 from langchain_openai import ChatOpenAI

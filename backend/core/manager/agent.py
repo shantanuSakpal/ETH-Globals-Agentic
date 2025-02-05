@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 from backend.config import settings
 from backend.core.agents.morpho.agent import MorphoAgent
 import asyncio
@@ -37,3 +37,14 @@ class AgentManager:
         except Exception as e:
             self.logger.error(f"Error adding agent: {str(e)}")
             return False
+
+    def get_agent(self, agent_id: str) -> Optional[MorphoAgent]:
+        """Get agent by ID
+        
+        Args:
+            agent_id: ID of the agent to retrieve
+            
+        Returns:
+            The agent if found, None otherwise
+        """
+        return self.agents.get(agent_id)

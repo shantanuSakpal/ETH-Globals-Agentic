@@ -3,7 +3,7 @@ from typing import Dict, Any, Optional
 from enum import Enum
 
 class WSMessageType(str, Enum):
-    STRATEGY_COMMAND = "strategy_command"
+    STRATEGY_SELECT = "strategy_select"
     MARKET_QUERY = "market_query"
     POSITION_QUERY = "position_query"
     MARKET_UPDATE = "market_update"
