@@ -12,15 +12,17 @@ from cdp import Wallet
 from models.wallet import WalletDB
 from datetime import datetime
 import uuid
+from models.websocket import WSMessage, WSMessageType
 
 logger = logging.getLogger(__name__)
 
 class VaultService:
-    def __init__(self):
+    def __init__(self, manager=None):
         settings = get_settings()
         self.db = DatabaseService(settings.MONGODB_URL)
         self.strategy_manager = StrategyManager()
         self.agent_manager = AgentManager()
+        self.manager = manager  # Connection manager instance
 
     async def create_user_wallet(self, user_id: str) -> Optional[WalletDB]:
         try:
@@ -99,8 +101,28 @@ class VaultService:
 
     async def update_vault_balance(self, vault_id: str, new_balance: float) -> bool:
         try:
+            # Update balance in database
             await self.db.update_vault_balance(vault_id, new_balance)
+            
+            # Create WebSocket message
+            message = WSMessage(
+                type=WSMessageType.BALANCE_UPDATE,
+                data={
+                    "vault_id": vault_id,
+                    "new_balance": new_balance,
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            )
+            
+            # Broadcast to subscribed clients
+            if self.manager:
+                await self.manager.broadcast_message(
+                    message=message,
+                    topic=f"vault_{vault_id}"  # Topic for this vault
+                )
+            
             return True
+            
         except Exception as e:
             logger.error(f"Error updating vault balance: {str(e)}")
             return False
