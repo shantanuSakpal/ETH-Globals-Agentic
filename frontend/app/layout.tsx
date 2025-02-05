@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
 
 import { ThemeProvider } from '@/components/theme-provider';
-
+import {PrivyAuthProvider } from "@/components/privyAuthProvider"
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -57,15 +57,18 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <PrivyAuthProvider>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
+          >
           <Toaster position="top-center" />
           {children}
         </ThemeProvider>
+          </PrivyAuthProvider>
       </body>
     </html>
   );
