@@ -1,7 +1,12 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
 import { ThemeProvider } from '@/components/theme-provider';
+<<<<<<< Updated upstream
 import { Provider } from '@/components/privyproviders'
+=======
+import {PrivyAuthProvider} from "@/components/privy/PrivyAuthProvider";
+
+>>>>>>> Stashed changes
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -48,6 +53,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+<<<<<<< Updated upstream
         <Provider>
           <ThemeProvider
             attribute="class"
@@ -59,6 +65,21 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </Provider>
+=======
+
+        <PrivyAuthProvider>
+
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          >
+          <Toaster position="top-center" />
+          {children}
+        </ThemeProvider>
+            </PrivyAuthProvider>
+>>>>>>> Stashed changes
       </body>
     </html>
   );

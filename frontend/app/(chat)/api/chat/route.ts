@@ -41,9 +41,13 @@ const blocksTools: AllowedTools[] = [
   'requestSuggestions',
 ];
 
+<<<<<<< Updated upstream
 const weatherTools: AllowedTools[] = ['getWeather'];
 const allTools: AllowedTools[] = [...blocksTools, ...weatherTools];
 
+=======
+const allTools: AllowedTools[] = [...cryptTools];
+>>>>>>> Stashed changes
 export async function POST(request: Request) {
   const {
     id,
@@ -52,34 +56,60 @@ export async function POST(request: Request) {
   }: { id: string; messages: Array<Message>; modelId: string } =
     await request.json();
 
-  const session = await auth();
+  try {
+    const session = await auth();
 
+<<<<<<< Updated upstream
   if (!session || !session.user || !session.user.id) {
     return new Response('Unauthorized', { status: 401 });
   }
+=======
+    if (!session?.user?.id) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+>>>>>>> Stashed changes
 
-  const model = models.find((model) => model.id === modelId);
+    const model = models.find((model) => model.id === modelId);
 
+<<<<<<< Updated upstream
   if (!model) {
     return new Response('Model not found', { status: 404 });
   }
+=======
+    if (!model) {
+      return new Response("Model not found", { status: 404 });
+    }
+>>>>>>> Stashed changes
 
-  const userMessage = getMostRecentUserMessage(messages);
+    const userMessage = getMostRecentUserMessage(messages);
 
+<<<<<<< Updated upstream
   if (!userMessage) {
     return new Response('No user message found', { status: 400 });
   }
+=======
+    if (!userMessage) {
+      return new Response("No user message found", { status: 400 });
+    }
+>>>>>>> Stashed changes
 
-  const chat = await getChatById({ id });
+    // Ensure user exists before creating chat
+    const [user] = await getUser(session.user.email!);
+    if (!user) {
+      // Create user if they don't exist
+      await createUser(session.user.email!, 'default-password');
+    }
 
-  if (!chat) {
-    const title = await generateTitleFromUserMessage({ message: userMessage });
-    await saveChat({ id, userId: session.user.id, title });
-  }
+    const chat = await getChatById({ id });
 
-  await saveMessages({
-    messages: [{ ...userMessage, createdAt: new Date(), chatId: id }],
-  });
+    if (!chat) {
+      const title = await generateTitleFromUserMessage({ message: userMessage });
+      await saveChat({ id, userId: session.user.id, title });
+    }
+
+    await saveMessages({
+      messages: [{ ...userMessage, createdAt: new Date(), chatId: id }],
+    });
 
   return createDataStreamResponse({
     execute: (dataStream) => {
