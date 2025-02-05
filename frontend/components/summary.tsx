@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import type { SummaryData } from "@/types/trading"
+import type { SummaryData } from "@/components/types/trading"
 
 interface SummaryProps {
   data: SummaryData
