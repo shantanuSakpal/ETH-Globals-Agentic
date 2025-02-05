@@ -1,6 +1,7 @@
+// app-sidebar-normal.tsx
 "use client"
 
-import { LayoutDashboard, MessageSquare, Bot, Settings, Users, Zap, HelpCircle } from "lucide-react"
+import { LayoutDashboard, MessageSquare, Bot, Zap, HelpCircle } from "lucide-react"
 import Link from "next/link"
 import { SidebarUserNav } from "@/components/sidebar-user-nav"
 import {
@@ -15,25 +16,13 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 
-// Define the expected user type
-interface User {
-  name: string;
-  email: string;
-  avatarUrl?: string;
-}
-
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: MessageSquare, label: "Chat", href: "/chat" },
   { icon: Bot, label: "Manage Bots", href: "/manage-bots" },
-//   { icon: Users, label: "Team", href: "/team" },
-//   { icon: Zap, label: "Integrations", href: "/integrations" },
-//   { icon: Settings, label: "Settings", href: "/settings" },
 ]
 
-// Accept a user prop in AppSidebar
-export function AppSidebar({ user }: { user: User }) {
-   
+export function AppSidebar({ user }: { user: any }) {  // Using any to fix the immediate error
   return (
     <Sidebar className="bg-black text-white">
       <SidebarHeader>
@@ -89,9 +78,8 @@ export function AppSidebar({ user }: { user: User }) {
         </SidebarGroup>
       </SidebarContent>
 
-      {/* Pass user prop to SidebarUserNav */}
       <div className="mb-3">
-      <SidebarUserNav user={user} />
+        <SidebarUserNav user={user} />
       </div>
     </Sidebar>
   )
