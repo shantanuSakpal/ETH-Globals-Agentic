@@ -10,6 +10,7 @@ from models.vault import VaultCreate, VaultStatus
 from services.vault_service import VaultService
 from core.manager.agent import AgentManager
 from models.inputs import UserDepositInput, StrategySelectionInput
+from services.websocket import WebSocketService
 
 logger = logging.getLogger(__name__)
 manager = ConnectionManager()
@@ -161,53 +162,21 @@ async def handle_strategy_selection(websocket: WebSocket, data: Dict[str, Any], 
         # Validate input
         input_data = StrategySelectionInput(**data)
         
-        # Create vault
-        vault_service = VaultService()
-        vault = await vault_service.create_vault(VaultCreate(
-            strategy_id=input_data.strategy_type.value,
-            initial_deposit=input_data.initial_deposit,
-            user_id=user_id,
-            settings={
-                "token_address": input_data.token_address,
-                "risk_level": input_data.risk_level
-            }
-        ))
-
-        #   # Initialize strategy and agent
-        # agent_manager = AgentManager()
-        # success = await agent_manager.add_agent(
-        #     agent_id=vault.id,
-        #     strategy_params={
-        #         "vault_id": vault.id,
-        #         "strategy_id": strategy_id,
-        #         "user_id": user_id
-        #     }
-        # )
+        # Use WebSocket service to handle business logic
+        ws_service = WebSocketService(vault_service=VaultService(), agent_manager=AgentManager())
+        response = await ws_service.handle_message(
+            message_type="strategy_select",
+            data=input_data.dict(),
+            user_id=user_id
+        )
         
-        # if success:
-        #     await websocket.send_json({
-        #         "type": "strategy_initialized",
-        #         "data": {
-        #             "vault_id": vault.id,
-        #             "status": "active"
-        #         }
-        #     })
-        # else:
-        #     raise Exception("Failed to initialize strategy")
+        await websocket.send_json(response)
         
-        if not vault:
-            raise Exception("Failed to create vault")
-            
-        await websocket.send_json({
-            "type": "strategy_initialized",
-            "data": {
-                "vault_id": vault.id,
-                "status": vault.status,
-                "deposit_address": vault.settings.get("deposit_address")
-            }
-        })
     except Exception as e:
-        await websocket.send_json({"type": "error", "data": {"message": str(e)}})
+        await websocket.send_json({
+            "type": "error",
+            "data": {"message": str(e)}
+        })
 
 async def handle_user_deposit(websocket: WebSocket, data: Dict[str, Any], user_id: str):
     try:
