@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from models.websocket import WSMessageType
+from models.websocket import WSMessageType, WSMessage
 from services.vault_service import VaultService
 from core.manager.agent import AgentManager
 #from core.manager.strategy_monitor import StrategyMonitor
@@ -9,6 +9,23 @@ import logging
 logger = logging.getLogger(__name__)
 
 class WebSocketService:
+    """
+        WebSocket Business Logic Service
+
+        Implements the business logic for WebSocket message handling, particularly
+        for strategy initialization and monitoring.
+
+        Responsibilities:
+            - Strategy selection processing
+            - Vault creation and management
+            - Agent initialization
+            - Monitoring setup
+            - Deposit handling
+
+        Example:
+            service = WebSocketService(vault_service, agent_manager, monitor)
+            response = await service.process_strategy_selection(data, user_id)
+    """
     def __init__(self, vault_service: VaultService, agent_manager: AgentManager, monitor: StrategyMonitor):
         self.vault_service = vault_service
         self.agent_manager = agent_manager

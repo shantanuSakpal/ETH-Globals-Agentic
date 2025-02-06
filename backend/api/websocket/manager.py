@@ -10,6 +10,25 @@ from .queue import MessageQueue
 logger = logging.getLogger(__name__)
 
 class ConnectionManager:
+    """
+    WebSocket Connection Manager
+
+    This class manages all active WebSocket connections and handles message distribution.
+    It implements a pub/sub pattern for topic-based message broadcasting.
+
+    Key Features:
+    - Connection state management
+    - Topic-based subscriptions
+    - Message broadcasting
+    - Background task queue processing
+    - Connection health monitoring
+
+    Example:
+        manager = ConnectionManager()
+        await manager.connect(protocol, client_id)
+        await manager.broadcast_message(message, topic="strategy_updates")
+    """
+
     def __init__(self):
         self._protocols: Dict[str, WebSocketProtocol] = {}
         self._subscriptions: Dict[str, Set[str]] = {}
@@ -68,21 +87,15 @@ class ConnectionManager:
                 break
 
     async def broadcast_message(self, message: WSMessage, topic: Optional[str] = None) -> None:
-        """Broadcast message to subscribers"""
+        """Broadcast message to subscribed clients"""
         disconnected = []
-        
         for client_id, protocol in self._protocols.items():
-            # Skip if client not subscribed to topic
-            if topic and topic not in self._subscriptions[client_id]:
-                continue
-                
-            try:
-                await protocol.send(message.dict())
-            except Exception as e:
-                logger.error(f"Failed to send to {client_id}: {str(e)}")
-                disconnected.append(client_id)
-                
-        # Clean up disconnected clients
+            if topic is None or (client_id in self._subscriptions and topic in self._subscriptions[client_id]):
+                try:
+                    await protocol.send(message.dict())
+                except Exception:
+                    disconnected.append(client_id)
+                    
         for client_id in disconnected:
             await self.disconnect(client_id)
 
@@ -124,8 +137,41 @@ class ConnectionManager:
 
     async def _handle_strategy_select(self, message: WSMessage):
         """Handle strategy selection messages"""
-        if client_id := message.data.get("client_id"):
+        try:
+            client_id = message.data.get("client_id")
+            if not client_id:
+                logger.error("Missing client_id in strategy select message")
+                return
+                
+            # Broadcast to strategy topic
             await self.broadcast_message(
                 message=message,
                 topic=f"strategy_{message.data['vault_id']}"
             )
+            
+            # Subscribe client to strategy updates
+            await self.subscribe(
+                client_id, 
+                f"strategy_{message.data['vault_id']}"
+            )
+            
+        except Exception as e:
+            logger.error(f"Error in strategy select handler: {str(e)}")
+
+    async def _handle_monitor_update(self, message: WSMessage):
+        """Handle strategy monitoring updates"""
+        try:
+            # Broadcast update to subscribed clients
+            await self.broadcast_message(
+                message=message,
+                topic=f"strategy_{message.data['vault_id']}"
+            )
+            
+        except Exception as e:
+            logger.error(f"Error in monitor update handler: {str(e)}")
+
+    async def cleanup(self):
+        """Cleanup all connections and tasks"""
+        for client_id in list(self._protocols.keys()):
+            await self.disconnect(client_id)
+        await self._message_queue.stop()

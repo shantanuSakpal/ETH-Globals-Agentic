@@ -51,6 +51,7 @@ async def startup_event():
 async def shutdown_event():
     """Cleanup on app shutdown"""
     await agent_manager.shutdown()
+    await agent_manager.cleanup()
 
 if __name__ == "__main__":
     uvicorn.run(

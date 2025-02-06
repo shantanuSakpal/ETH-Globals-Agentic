@@ -390,30 +390,6 @@ class MorphoAgent(BaseAgent):
         }
         for connection in self.active_connections:
             await connection.send_json(message)
-            
-    async def handle_client_message(self, websocket: WebSocket, message: Dict[str, Any]):
-        """Handle incoming messages from frontend"""
-        try:
-            message_type = message.get("type")
-            data = message.get("data", {})
-            
-            if message_type == "strategy_select":
-                await self.handle_strategy_selection(data)
-            elif message_type == "execute_action":
-                await self.handle_action_execution(data)
-            elif message_type == "position_query":
-                await self.handle_position_query(data)
-            else:
-                await websocket.send_json({
-                    "type": "error",
-                    "data": {"message": f"Unknown message type: {message_type}"}
-                })
-                
-        except Exception as e:
-            await websocket.send_json({
-                "type": "error",
-                "data": {"message": str(e)}
-            })
 
     async def execute_borrow(self, params: Dict[str, Any]) -> Dict[str, Any]:
         """Execute borrow action through CDP AgentKit"""

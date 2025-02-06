@@ -7,10 +7,30 @@ from models.websocket import WSMessage
 logger = logging.getLogger(__name__)
 
 class WebSocketProtocol:
+    """
+    WebSocket Protocol Handler
+
+    Handles individual WebSocket connection protocols including message serialization,
+    heartbeat mechanisms, and connection state management.
+
+    Features:
+    - Connection state tracking
+    - Heartbeat mechanism (ping/pong)
+    - Message serialization/deserialization
+    - Async message iteration
+    - Graceful connection closure
+
+    Example:
+        protocol = WebSocketProtocol(websocket)
+        await protocol.accept()
+        async for message in protocol.iter_messages():
+            # Handle message
+    """
     def __init__(self, websocket: WebSocket):
         self.websocket = websocket
         self.connected = False
         self._ping_task: Optional[asyncio.Task] = None
+        self.user_id: Optional[str] = None
         
     async def accept(self) -> None:
         await self.websocket.accept()

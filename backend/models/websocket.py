@@ -38,3 +38,14 @@ class WSResponse(BaseModel):
     data: Dict[str, Any]
     request_id: Optional[str]
     timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+class WSTopicPrefix(str, Enum):
+    STRATEGY = "strategy"
+    VAULT = "vault"
+    MARKET = "market"
+    SYSTEM = "system"
+
+class WSTopicFormatter:
+    @staticmethod
+    def format_topic(prefix: WSTopicPrefix, identifier: str) -> str:
+        return f"{prefix}_{identifier}"
