@@ -13,6 +13,7 @@ from api.middleware.auth import ws_auth
 import logging
 import json
 from datetime import datetime
+from api.dependencies import get_connection_manager
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -44,7 +45,8 @@ Usage:
 async def agent_websocket(
     websocket: WebSocket,
     client_id: str,
-    user: dict = Depends(ws_auth)
+    user: dict = Depends(ws_auth),
+    manager: ConnectionManager = Depends(get_connection_manager)
 ):
     protocol = None
     try:

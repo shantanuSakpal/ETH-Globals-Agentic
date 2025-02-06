@@ -12,6 +12,7 @@ class StrategyMonitor:
         self.manager = manager
         self.price_feed = price_feed
         self._monitors: Dict[str, asyncio.Task] = {}
+        self.logger = logging.getLogger(__name__)
         
     async def start_monitoring(self, vault_id: str):
         """Start monitoring a strategy vault"""

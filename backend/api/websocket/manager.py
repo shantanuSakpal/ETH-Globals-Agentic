@@ -33,14 +33,19 @@ class ConnectionManager:
         self._protocols: Dict[str, WebSocketProtocol] = {}
         self._subscriptions: Dict[str, Set[str]] = {}
         self._message_queue = MessageQueue()
-        
+
         # Register message handlers
-        self._message_queue._handlers = {
-            WSMessageType.STRATEGY_SELECT: self._handle_strategy_select,
-            WSMessageType.MONITOR_UPDATE: self._handle_monitor_update,
-            WSMessageType.AGENT_START: self._handle_agent_start
-            #WSMessageType.DEPOSIT: self._handle_deposit
-        }
+        self._message_queue.register_handler(WSMessageType.STRATEGY_SELECT, self._handle_strategy_select)
+        self._message_queue.register_handler(WSMessageType.MONITOR_UPDATE, self._handle_monitor_update)
+        self._message_queue.register_handler(WSMessageType.AGENT_START, self._handle_agent_start)
+        
+        # # Register message handlers
+        # self._message_queue._handlers = {
+        #     WSMessageType.STRATEGY_SELECT: self._handle_strategy_select,
+        #     WSMessageType.MONITOR_UPDATE: self._handle_monitor_update,
+        #     WSMessageType.AGENT_START: self._handle_agent_start
+        #     #WSMessageType.DEPOSIT: self._handle_deposit
+        # }
 
     async def connect(self, protocol: WebSocketProtocol, client_id: str) -> None:
         """Register new WebSocket connection"""
