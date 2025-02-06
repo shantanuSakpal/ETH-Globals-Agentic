@@ -1,15 +1,25 @@
-"use client"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { COLLATERAL_OPTIONS, SYNTH_OPTIONS, SLIPPAGE_OPTIONS } from "@/lib/constant"
-import type { TradingFormData } from "@/components/types/trading"
+"use client";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  COLLATERAL_OPTIONS,
+  SYNTH_OPTIONS,
+  SLIPPAGE_OPTIONS,
+} from "@/lib/constant";
+import type { TradingFormData } from "@/components/types/trading";
 
 interface TradingFormProps {
-  onChange: (data: TradingFormData) => void
-  data: TradingFormData
+  onChange: (data: TradingFormData) => void;
+  data: TradingFormData;
 }
 
 export function TradingForm({ onChange, data }: TradingFormProps) {
@@ -17,20 +27,29 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
     <div className="space-y-6">
       <Card className="border bg-background">
         <CardHeader>
-          <CardTitle className="text-xl font-medium">Supply collateral</CardTitle>
+          <CardTitle className="text-xl font-medium">
+            Supply collateral
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center space-x-4">
             <Input
               type="number"
               value={data.collateralAmount || ""}
-              onChange={(e) => onChange({ ...data, collateralAmount: Number.parseFloat(e.target.value) || 0 })}
+              onChange={(e) =>
+                onChange({
+                  ...data,
+                  collateralAmount: Number.parseFloat(e.target.value) || 0,
+                })
+              }
               className="bg-background border"
               placeholder="0"
             />
             <Select
               value={data.selectedCollateral}
-              onValueChange={(value) => onChange({ ...data, selectedCollateral: value })}
+              onValueChange={(value) =>
+                onChange({ ...data, selectedCollateral: value })
+              }
             >
               <SelectTrigger className="w-[180px] bg-background border">
                 <SelectValue placeholder="Choose collateral" />
@@ -52,7 +71,9 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
         <Label className="text-muted-foreground">Set Loop</Label>
         <Slider
           value={[data.loopMultiplier]}
-          onValueChange={([value]) => onChange({ ...data, loopMultiplier: value })}
+          onValueChange={([value]) =>
+            onChange({ ...data, loopMultiplier: value })
+          }
           min={1}
           max={10}
           step={0.1}
@@ -73,11 +94,21 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
             <Input
               type="number"
               value={data.synthAmount || ""}
-              onChange={(e) => onChange({ ...data, synthAmount: Number.parseFloat(e.target.value) || 0 })}
+              onChange={(e) =>
+                onChange({
+                  ...data,
+                  synthAmount: Number.parseFloat(e.target.value) || 0,
+                })
+              }
               className="bg-background border"
               placeholder="0.0000"
             />
-            <Select value={data.selectedSynth} onValueChange={(value) => onChange({ ...data, selectedSynth: value })}>
+            <Select
+              value={data.selectedSynth}
+              onValueChange={(value) =>
+                onChange({ ...data, selectedSynth: value })
+              }
+            >
               <SelectTrigger className="w-[180px] bg-background border">
                 <SelectValue placeholder="Choose synth" />
               </SelectTrigger>
@@ -100,7 +131,9 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
           <Label className="text-muted-foreground">Slippage tolerance</Label>
           <Select
             value={data.slippageTolerance.toString()}
-            onValueChange={(value) => onChange({ ...data, slippageTolerance: Number.parseFloat(value) })}
+            onValueChange={(value) =>
+              onChange({ ...data, slippageTolerance: Number.parseFloat(value) })
+            }
           >
             <SelectTrigger className="w-[100px] bg-background border">
               <SelectValue />
@@ -127,6 +160,5 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
