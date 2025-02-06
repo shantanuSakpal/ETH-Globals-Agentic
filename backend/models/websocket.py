@@ -16,6 +16,11 @@ class WSMessageType(str, Enum):
     ERROR = "error"
     PONG = "pong"
     BALANCE_UPDATE = "balance_update"
+    STRATEGY_SELECTED = "strategy_selected"
+    STRATEGY_INITIALIZED = "strategy_initialized"
+    AGENT_STARTED = "agent_started"
+    MONITORING_STARTED = "monitoring_started"
+    DEPOSIT_REQUIRED = "deposit_required"
 
 class WSMessage(BaseModel):
     """WebSocket message model"""

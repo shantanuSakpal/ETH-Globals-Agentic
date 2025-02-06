@@ -39,7 +39,7 @@ async def create_strategy(strategy: StrategyCreate):
     try:
         # Initialize the Morpho agent with the strategy parameters
         agent = MorphoAgent(
-            strategy_params=strategy.dict(),
+            strategy_params=strategy.model_dump(),
             settings=settings
         )
         

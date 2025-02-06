@@ -17,7 +17,6 @@ from datetime import datetime
 router = APIRouter()
 logger = logging.getLogger(__name__)
 manager = ConnectionManager()
-monitor = StrategyMonitor(manager, PriceFeed())
 
 @router.websocket("/ws/agent/{client_id}")
 async def agent_websocket(
@@ -27,10 +26,12 @@ async def agent_websocket(
 ):
     protocol = None
     try:
-        # Initialize services with manager
+        # Initialize services
+        monitor = StrategyMonitor(manager, PriceFeed())
         ws_service = WebSocketService(
             vault_service=VaultService(manager=manager),
-            agent_manager=AgentManager()
+            agent_manager=AgentManager(),
+            monitor=monitor
         )
         
         # Initialize protocol handler
@@ -40,7 +41,7 @@ async def agent_websocket(
         # Add user info from JWT
         protocol.user_id = user["sub"]
         
-        # Connect to manager
+        # Connect and start queue
         await manager.connect(protocol, client_id)
         
         # Start message queue processing
@@ -58,25 +59,52 @@ async def agent_websocket(
         
         # Message handling loop
         async for message in protocol.iter_messages():
-            if message.type == "pong":
-                continue
+            try:
+                if message.type == WSMessageType.STRATEGY_SELECT:
+                    response = await ws_service.process_strategy_selection(
+                        message.data,
+                        user["sub"]
+                    )
+                    
+                    if response["type"] == WSMessageType.STRATEGY_INIT:
+                        # Start monitoring and subscribe
+                        await monitor.start_monitoring(response["data"]["vault_id"])
+                        await manager.subscribe(
+                            client_id, 
+                            f"strategy_{response['data']['vault_id']}"
+                        )
+                        
+                        # Queue background processing
+                        await manager._message_queue.put_message(WSMessage(
+                            type=WSMessageType.AGENT_START,
+                            data={
+                                "vault_id": response["data"]["vault_id"],
+                                "client_id": client_id
+                            }
+                        ))
+                    
+                    await protocol.send(response)
+                    
+                elif message.type == "pong":
+                    continue
+                    
+                else:
+                    response = await ws_service.handle_message(
+                        message_type=message.type,
+                        data=message.data,
+                        user_id=client_id
+                    )
+                    await protocol.send(response)
+                    
+                    # Queue for background processing if needed
+                    await manager._message_queue.put_message(message)
+                    
+            except Exception as e:
+                await protocol.send({
+                    "type": WSMessageType.ERROR,
+                    "data": {"message": str(e)}
+                })
                 
-            if message.type == WSMessageType.STRATEGY_SELECT:
-                # Start monitoring and subscribe to updates
-                await monitor.start_monitoring(message.data["vault_id"])
-                await manager.subscribe(client_id, f"strategy_{message.data['vault_id']}")
-            
-            # Handle message through WebSocket service
-            response = await ws_service.handle_message(
-                message_type=message.type,
-                data=message.data,
-                user_id=client_id
-            )
-            await protocol.send(response)
-            
-            # Queue message for additional processing if needed
-            await manager._message_queue.put_message(message)
-            
     except WebSocketDisconnect:
         logger.info(f"Client {client_id} disconnected")
     finally:

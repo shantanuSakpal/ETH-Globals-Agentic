@@ -14,6 +14,14 @@ class ConnectionManager:
         self._protocols: Dict[str, WebSocketProtocol] = {}
         self._subscriptions: Dict[str, Set[str]] = {}
         self._message_queue = MessageQueue()
+        
+        # Register message handlers
+        self._message_queue._handlers = {
+            WSMessageType.STRATEGY_SELECT: self._handle_strategy_select,
+            WSMessageType.MONITOR_UPDATE: self._handle_monitor_update,
+            WSMessageType.AGENT_START: self._handle_agent_start
+            #WSMessageType.DEPOSIT: self._handle_deposit
+        }
 
     async def connect(self, protocol: WebSocketProtocol, client_id: str) -> None:
         """Register new WebSocket connection"""
@@ -96,3 +104,28 @@ class ConnectionManager:
         """Unsubscribe client from a topic"""
         if client_id in self._subscriptions:
             self._subscriptions[client_id].discard(topic)
+
+    async def _handle_agent_start(self, message: WSMessage):
+        """Handle agent initialization in background"""
+        try:
+            vault_id = message["data"]["vault_id"]
+            client_id = message["data"]["client_id"]
+            
+            # Background processing for agent setup
+            await self._protocols[client_id].send({
+                "type": WSMessageType.AGENT_STARTED,
+                "data": {
+                    "vault_id": vault_id,
+                    "status": "running"
+                }
+            })
+        except Exception as e:
+            logger.error(f"Error in agent start handler: {str(e)}")
+
+    async def _handle_strategy_select(self, message: WSMessage):
+        """Handle strategy selection messages"""
+        if client_id := message.data.get("client_id"):
+            await self.broadcast_message(
+                message=message,
+                topic=f"strategy_{message.data['vault_id']}"
+            )

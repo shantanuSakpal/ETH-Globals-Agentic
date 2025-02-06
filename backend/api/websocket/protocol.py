@@ -45,25 +45,25 @@ class WebSocketProtocol:
             self._ping_task.cancel()
         await self.websocket.close(code=code)
 
-    async def handle_strategy_message(self, message: WSMessage) -> None:
-        """Handle strategy selection and initialization"""
-        try:
-            # Create vault
-            response = await self.ws_service.process_strategy_selection(
-                message.data, 
-                self.client_id
-            )
+    # async def handle_strategy_message(self, message: WSMessage) -> None:
+    #     """Handle strategy selection and initialization"""
+    #     try:
+    #         # Create vault
+    #         response = await self.ws_service.process_strategy_selection(
+    #             message.data, 
+    #             self.client_id
+    #         )
             
-            # Initialize strategy
-            if response["type"] == "strategy_initialized":
-                await self.agent_manager.initialize_strategy(
-                    response["data"]["vault_id"]
-                )
+    #         # Initialize strategy
+    #         if response["type"] == "strategy_initialized":
+    #             await self.agent_manager.initialize_strategy(
+    #                 response["data"]["vault_id"]
+    #             )
                 
-            await self.send(response)
-        except Exception as e:
-            logger.error(f"Strategy handling error: {e}")
-            await self.send({
-                "type": "error",
-                "data": {"message": str(e)}
-            })
+    #         await self.send(response)
+    #     except Exception as e:
+    #         logger.error(f"Strategy handling error: {e}")
+    #         await self.send({
+    #             "type": "error",
+    #             "data": {"message": str(e)}
+    #         })
