@@ -79,6 +79,9 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
               onChange={(e) => onChange({ ...data, targetApy: Number.parseFloat(e.target.value) || 0 })}
               className="mt-2"
               placeholder="10.0"
+              min={0}
+              max={100}
+              step={0.1}
             />
           </div>
           
@@ -90,6 +93,23 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
               onChange={(e) => onChange({ ...data, minCollateralRatio: Number.parseFloat(e.target.value) || 0 })}
               className="mt-2"
               placeholder="1.5"
+              min={1.1}
+              max={2}
+              step={0.1}
+            />
+          </div>
+
+          <div>
+            <Label>Rebalance Threshold (%)</Label>
+            <Input
+              type="number"
+              value={data.rebalanceThreshold || ""}
+              onChange={(e) => onChange({ ...data, rebalanceThreshold: Number.parseFloat(e.target.value) || 0 })}
+              className="mt-2"
+              placeholder="5.0"
+              min={1}
+              max={20}
+              step={0.5}
             />
           </div>
         </CardContent>

@@ -12,6 +12,7 @@ const initialFormData: ETHLoopFormData = {
   targetApy: 10.0,
   rebalanceThreshold: 5.0,
   slippageTolerance: 0.5,
+  riskLevel: 'Low'
 }
 
 const initialSummaryData: ETHLoopSummaryData = {
