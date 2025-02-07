@@ -18,6 +18,7 @@ export interface ETHLoopFormData {
   targetApy: number
   rebalanceThreshold: number
   slippageTolerance: number
+  riskLevel: 'Low' | 'Medium' | 'High'
 }
 
 export interface ETHLoopSummaryData {
