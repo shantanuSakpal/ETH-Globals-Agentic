@@ -8,6 +8,7 @@ from api.websocket import router as ws_router
 from backend.core.manager.agent import AgentManager
 from config.settings import get_settings
 from config.logging import setup_logging
+from api.dependencies import get_connection_manager
 
 # Setup logging
 setup_logging()
@@ -51,7 +52,9 @@ async def startup_event():
 async def shutdown_event():
     """Cleanup on app shutdown"""
     await agent_manager.shutdown()
-    await agent_manager.cleanup()
+    #await agent_manager.cleanup()
+    manager = await get_connection_manager()
+    await manager.cleanup()
 
 if __name__ == "__main__":
     uvicorn.run(
