@@ -1,7 +1,8 @@
-from fastapi import Request, HTTPException
+from fastapi import Request, HTTPException, WebSocket
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose import JWTError, jwt
 from config.settings import get_settings
+from typing import Optional
 import logging
 
 logger = logging.getLogger(__name__)
@@ -65,4 +66,32 @@ async def auth_middleware(request: Request, call_next):
         raise HTTPException(
             status_code=500,
             detail="Internal server error during authentication"
-        ) 
+        )
+
+async def validate_token(token: str) -> dict:
+    """Validate JWT token and return payload"""
+    try:
+        payload = jwt.decode(
+            token,
+            settings.SECRET_KEY,
+            algorithms=[settings.ALGORITHM]
+        )
+        return payload
+    except JWTError as e:
+        logger.error(f"JWT validation error: {str(e)}")
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+async def ws_auth(
+    websocket: WebSocket,
+    token: Optional[str] = None
+) -> dict:
+    """WebSocket authentication dependency"""
+    if not token:
+        await websocket.close(code=4001, reason="Missing authentication token")
+        raise HTTPException(status_code=401, detail="Missing authentication token")
+        
+    try:
+        return await validate_token(token)
+    except HTTPException:
+        await websocket.close(code=4001, reason="Invalid authentication token")
+        raise 

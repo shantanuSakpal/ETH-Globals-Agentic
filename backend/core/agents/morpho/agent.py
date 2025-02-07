@@ -1,11 +1,14 @@
+from datetime import datetime
 from typing import Dict, Any, Optional, Set, List
-from backend.actions.morpho.repay import MORPHO_REPAY_PROMPT, morpho_repay
+
+from cdp import Wallet
+from backend.core.agents.morpho.actions.repay import MORPHO_REPAY_PROMPT, morpho_repay
 from fastapi import WebSocket
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from cdp_langchain.agent_toolkits import CdpToolkit
 from cdp_langchain.utils import CdpAgentkitWrapper
-from .base_agent import BaseAgent
+from ..base_agent import BaseAgent
 from services.morpho_client import MorphoClient
 from services.price_feed import PriceFeed
 from enum import Enum
@@ -13,9 +16,12 @@ import logging
 import asyncio
 from langchain.schema import HumanMessage
 from cdp_langchain.tools import CdpTool
-from actions.morpho.borrow import MorphoBorrowInput, morpho_borrow, MORPHO_BORROW_PROMPT
-from actions.morpho.leverage import MORPHO_LEVERAGE_PROMPT, MorphoLeverageInput, morpho_leverage
-from actions.morpho.repay import MorphoRepayInput, morpho_repay
+from backend.core.agents.morpho.actions.borrow import MorphoBorrowInput, morpho_borrow, MORPHO_BORROW_PROMPT
+from backend.core.agents.morpho.actions.leverage import MORPHO_LEVERAGE_PROMPT, MorphoLeverageInput, morpho_leverage
+from backend.core.agents.morpho.actions.repay import MorphoRepayInput, morpho_repay
+from cdp_agentkit_core.actions.morpho.deposit import MorphoDepositInput, deposit_to_morpho
+from cdp_agentkit_core.actions.morpho.withdraw import MorphoWithdrawInput, withdraw_from_morpho
+
 class MessageType(Enum):
     STRATEGY_SELECT = "strategy_select"
     MARKET_UPDATE = "market_update"
@@ -323,7 +329,7 @@ class MorphoAgent(BaseAgent):
         """Calculate risk metrics"""
         try:
             return {
-                "market_risk": 0.3,  # Placeholder
+                "market_risk": 0.3,  # Placeholbr
                 "protocol_risk": 0.2,  # Placeholder
                 "total_risk": 0.25  # Placeholder
             }
@@ -384,30 +390,6 @@ class MorphoAgent(BaseAgent):
         }
         for connection in self.active_connections:
             await connection.send_json(message)
-            
-    async def handle_client_message(self, websocket: WebSocket, message: Dict[str, Any]):
-        """Handle incoming messages from frontend"""
-        try:
-            message_type = message.get("type")
-            data = message.get("data", {})
-            
-            if message_type == "strategy_select":
-                await self.handle_strategy_selection(data)
-            elif message_type == "execute_action":
-                await self.handle_action_execution(data)
-            elif message_type == "position_query":
-                await self.handle_position_query(data)
-            else:
-                await websocket.send_json({
-                    "type": "error",
-                    "data": {"message": f"Unknown message type: {message_type}"}
-                })
-                
-        except Exception as e:
-            await websocket.send_json({
-                "type": "error",
-                "data": {"message": str(e)}
-            })
 
     async def execute_borrow(self, params: Dict[str, Any]) -> Dict[str, Any]:
         """Execute borrow action through CDP AgentKit"""
@@ -541,4 +523,67 @@ class MorphoAgent(BaseAgent):
             
         except Exception as e:
             self.logger.error(f"Error executing repay: {str(e)}")
+            raise
+
+    async def execute_deposit(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute deposit action through CDP AgentKit"""
+        try:
+            # Validate parameters
+            deposit_input = MorphoDepositInput(**params)
+            
+            # Get deposit tool
+            deposit_tool = next(
+                tool for tool in self.tools 
+                if tool.name == "morpho_deposit"
+            )
+            
+            # Execute deposit through CDP
+            result = await deposit_tool.arun(
+                vault_address=deposit_input.vault_address,
+                assets=deposit_input.assets,
+                receiver=deposit_input.receiver,
+                token_address=deposit_input.token_address
+            )
+            
+            # Broadcast result to connected clients
+            await self.broadcast_message(
+                MessageType.ACTION_RESULT,
+                {"action": "deposit", "result": result}
+            )
+            
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error executing deposit: {str(e)}")
+            raise
+
+    async def execute_withdraw(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute withdraw action through CDP AgentKit"""
+        try:
+            # Validate parameters
+            withdraw_input = MorphoWithdrawInput(**params)
+            
+            # Get withdraw tool
+            withdraw_tool = next(
+                tool for tool in self.tools 
+                if tool.name == "morpho_withdraw"
+            )
+            
+            # Execute withdraw through CDP
+            result = await withdraw_tool.arun(
+                vault_address=withdraw_input.vault_address,
+                assets=withdraw_input.assets,
+                receiver=withdraw_input.receiver
+            )
+            
+            # Broadcast result to connected clients
+            await self.broadcast_message(
+                MessageType.ACTION_RESULT,
+                {"action": "withdraw", "result": result}
+            )
+            
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"Error executing withdraw: {str(e)}")
             raise 
