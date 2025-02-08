@@ -54,7 +54,15 @@ class WebSocketService:
             if not vault:
                 raise Exception("Failed to create vault")
             
-            # Step 2: Initialize agent with wallet data
+            # Step 2: Ensure agent wallet data is available.
+            # If not provided by the client, create one using WalletService.
+            wallet_data = data.get("agent_wallet_data")
+            if not wallet_data:
+                from services.wallet_service import WalletService
+                wallet_service = WalletService()
+                wallet_data = await wallet_service.create_agent_wallet(user_id)
+            
+            # Step 3: Initialize agent with wallet data.
             success = await self.agent_manager.add_agent(
                 agent_id=vault.id,
                 strategy_params={
@@ -62,15 +70,14 @@ class WebSocketService:
                     "strategy_id": data["strategy_id"],
                     "initial_deposit": data.get("initial_deposit", 0),
                     "parameters": data.get("parameters", {}),
-                    # The agent must have its own wallet information for funding
-                    "wallet_data": data.get("agent_wallet_data")
+                    "wallet_data": wallet_data
                 }
             )
             
             if not success:
                 raise Exception("Failed to initialize agent")
             
-            # Step 3: Start monitoring for the vault
+            # Step 4: Start monitoring for this vault.
             await self.monitor.start_monitoring(vault.id)
             
             # Return instructions to the frontend:
