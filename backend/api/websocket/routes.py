@@ -1,23 +1,20 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends, Query
-from typing import Optional, Dict
-from .protocol import WebSocketProtocol
-from .manager import ConnectionManager
-from services.monitor import StrategyMonitor
-from services.price_feed import PriceFeed
-from models.websocket import WSMessage, WSMessageType
-from core.agents.morpho.agent import MorphoAgent
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends
+from api.middleware.auth import ws_auth
 from services.websocket import WebSocketService
 from services.vault_service import VaultService
 from core.manager.agent import AgentManager
-from api.middleware.auth import ws_auth
-import logging
-import json
-from datetime import datetime
+from services.monitor import StrategyMonitor
 from api.dependencies import get_connection_manager
+import logging
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
-manager = ConnectionManager()
+
+# Instantiate shared service instances.
+vault_service = VaultService()
+agent_manager = AgentManager()
+monitor = StrategyMonitor()
+ws_service = WebSocketService(vault_service, agent_manager, monitor)
 
 """
 WebSocket Route Handler
@@ -42,35 +39,17 @@ Usage:
 """
 
 @router.websocket("/ws/agent/{client_id}")
-async def websocket_endpoint(
-    websocket: WebSocket,
-    client_id: str,
-    manager: ConnectionManager = Depends(get_connection_manager)
-):
+async def agent_websocket(websocket: WebSocket, client_id: str, user: dict = Depends(ws_auth)):
+    await websocket.accept()
     try:
-        # Accept the connection once
-        await websocket.accept()
-        logger.info(f"Connection accepted for client {client_id}")
-        
-        # Pass the already-accepted websocket to your connection manager
-        await manager.connect(websocket, client_id)
-        
-        await websocket.send_json({
-            "type": "system",
-            "data": {"message": "Connected successfully", "client_id": client_id}
-        })
-        
         while True:
-            try:
-                data = await websocket.receive_text()
-                await websocket.send_text(f"Message received: {data}")
-            except WebSocketDisconnect:
-                await manager.disconnect(client_id)
-                break
-    except Exception as e:
-        logger.error(f"WebSocket error: {str(e)}")
-        if client_id in manager.active_connections:
-            await manager.disconnect(client_id)
+            message = await websocket.receive_json()
+            message_type = message.get("type")
+            data = message.get("data", {})
+            response = await ws_service.handle_message(message_type, data, user["id"])
+            await websocket.send_json(response)
+    except WebSocketDisconnect:
+        logger.info("WebSocket disconnected")
 
 # @router.websocket("/ws/{strategy_id}")
 # async def websocket_endpoint(

@@ -54,7 +54,7 @@ class WebSocketService:
             if not vault:
                 raise Exception("Failed to create vault")
             
-            # Step 2: Initialize agent
+            # Step 2: Initialize agent with wallet data
             success = await self.agent_manager.add_agent(
                 agent_id=vault.id,
                 strategy_params={
@@ -62,7 +62,7 @@ class WebSocketService:
                     "strategy_id": data["strategy_id"],
                     "initial_deposit": data.get("initial_deposit", 0),
                     "parameters": data.get("parameters", {}),
-                    # The agent must have its own wallet information, used later for funding
+                    # The agent must have its own wallet information for funding
                     "wallet_data": data.get("agent_wallet_data")
                 }
             )
@@ -70,7 +70,7 @@ class WebSocketService:
             if not success:
                 raise Exception("Failed to initialize agent")
             
-            # Step 3: Start monitoring (if applicable)
+            # Step 3: Start monitoring for the vault
             await self.monitor.start_monitoring(vault.id)
             
             # Return instructions to the frontend:
@@ -93,7 +93,7 @@ class WebSocketService:
             }
 
     async def process_deposit(self, data: Dict[str, Any], user_id: str) -> Dict[str, Any]:
-        """Process deposit business logic"""
+        """Process deposit business logic which will check for vault deployment if needed."""
         result = await self.vault_service.handle_deposit(
             user_id=user_id,
             vault_id=data["vault_id"],

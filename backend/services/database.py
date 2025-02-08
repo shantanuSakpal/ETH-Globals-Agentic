@@ -31,3 +31,12 @@ class DatabaseService:
                 "updated_at": datetime.utcnow()
             }}
         )
+
+    async def update_vault_settings(self, vault_id: str, new_settings: dict):
+        await self.db.vaults.update_one(
+            {"id": vault_id},
+            {"$set": {
+                "settings": new_settings,
+                "updated_at": datetime.utcnow()
+            }}
+        )
