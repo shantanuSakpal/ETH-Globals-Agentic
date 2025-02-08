@@ -1,8 +1,7 @@
-// frontend/lib/context/wallet-context.tsx
-'use client';
+"use client";
 
-import { createContext, useContext, ReactNode } from 'react';
-import { useWallets } from '@privy-io/react-auth';
+import { createContext, useContext, ReactNode } from "react";
+import { useWallets } from "@privy-io/react-auth";
 
 interface WalletContextType {
   walletAddress: string | null;
