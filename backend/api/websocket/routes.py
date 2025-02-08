@@ -5,6 +5,8 @@ from services.vault_service import VaultService
 from core.manager.agent import AgentManager
 from services.monitor import StrategyMonitor
 from api.dependencies import get_connection_manager
+from api.websocket.manager import manager
+from services.price_feed import PriceFeed
 import logging
 
 router = APIRouter()
@@ -13,7 +15,8 @@ logger = logging.getLogger(__name__)
 # Instantiate shared service instances.
 vault_service = VaultService()
 agent_manager = AgentManager()
-monitor = StrategyMonitor()
+price_feed_instance = PriceFeed()
+monitor = StrategyMonitor(manager, price_feed_instance)
 ws_service = WebSocketService(vault_service, agent_manager, monitor)
 
 """
