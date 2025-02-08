@@ -23,7 +23,7 @@ async def websocket_endpoint(
     logger.info(f"New WebSocket connection attempt - Client ID: {client_id}")
     
     try:
-        # Get token from header first, then query params
+        # Token extraction (header override if available)
         auth_header = websocket.headers.get("authorization", "")
         if auth_header.startswith("Bearer "):
             token = auth_header.replace("Bearer ", "")
@@ -35,37 +35,56 @@ async def websocket_endpoint(
             await websocket.close(code=4001, reason="Missing authentication token")
             return
 
-        # Accept the WebSocket connection before authentication
+        # Accept connection for authentication to occur
         await websocket.accept()
         logger.info(f"WebSocket connection accepted for client {client_id}")
-        
-        try:
-            # Authenticate after accepting connection
-            logger.info(f"Authenticating client {client_id}")
-            payload = await ws_auth(websocket, token)
-            logger.info(f"Authentication successful for client {client_id}")
+
+        #         try:
+        #     # Authenticate after accepting connection
+        #     logger.info(f"Authenticating client {client_id}")
+        #     payload = await ws_auth(websocket, token)
+        #     logger.info(f"Authentication successful for client {client_id}")
             
-            # Initialize connection in manager
-            if await manager.connect(websocket, token, client_id):
-                logger.info(f"Client {client_id} connected to manager")
+        #     # Initialize connection in manager
+        #     if await manager.connect(websocket, token, client_id):
+        #         logger.info(f"Client {client_id} connected to manager")
                 
-                # Message handling loop
-                while True:
-                    try:
-                        message = await websocket.receive_text()
-                        await manager.handle_message(client_id, message)
-                    except WebSocketDisconnect:
-                        logger.info(f"Client {client_id} disconnected")
-                        await manager.disconnect(client_id)
-                        break
-            else:
-                logger.error(f"Manager connection failed for client {client_id}")
-                await websocket.close(code=4000, reason="Connection failed")
+        #         # Message handling loop
+        #         while True:
+        #             try:
+        #                 message = await websocket.receive_text()
+        #                 await manager.handle_message(client_id, message)
+        #             except WebSocketDisconnect:
+        #                 logger.info(f"Client {client_id} disconnected")
+        #                 await manager.disconnect(client_id)
+        #                 break
+        #     else:
+        #         logger.error(f"Manager connection failed for client {client_id}")
+        #         await websocket.close(code=4000, reason="Connection failed")
                 
-        except HTTPException as e:
-            logger.error(f"Authentication failed for client {client_id}: {str(e)}")
-            await websocket.close(code=4001, reason=str(e.detail))
-            return
+        # except HTTPException as e:
+        #     logger.error(f"Authentication failed for client {client_id}: {str(e)}")
+        #     await websocket.close(code=4001, reason=str(e.detail))
+        #     return
+        
+        # Authenticate the user (using your existing ws_auth or get_user_from_token)
+        payload = await ws_auth(websocket, token)
+        logger.info(f"Authentication successful for client {client_id}")
+        
+        # From here, pass the token or user id to your manager or service
+        if await manager.connect(websocket, token, client_id):
+            logger.info(f"Client {client_id} connected to manager")
+            while True:
+                try:
+                    message = await websocket.receive_text()
+                    await manager.handle_message(client_id, message)
+                except WebSocketDisconnect:
+                    logger.info(f"Client {client_id} disconnected")
+                    await manager.disconnect(client_id)
+                    break
+        else:
+            logger.error(f"Manager connection failed for client {client_id}")
+            await websocket.close(code=4000, reason="Connection failed")
             
     except Exception as e:
         logger.error(f"WebSocket error for client {client_id}: {str(e)}")

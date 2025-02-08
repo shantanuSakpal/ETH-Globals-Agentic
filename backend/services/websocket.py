@@ -5,6 +5,8 @@ from core.manager.agent import AgentManager
 #from core.manager.strategy_monitor import StrategyMonitor
 from services.monitor import StrategyMonitor
 import logging
+import json
+from fastapi import WebSocket
 
 logger = logging.getLogger(__name__)
 
@@ -112,3 +114,16 @@ class WebSocketService:
             "type": "deposit_complete",
             "data": result
         }
+
+    async def websocket_handler(self, websocket: WebSocket, user_id: str):
+        await websocket.accept()
+        while True:
+            message = await websocket.receive_text()
+            data = json.loads(message)
+            msg_type = data.get("type")
+            if msg_type == "strategy_select":
+                response = await self.process_strategy_selection(data.get("data"), user_id)
+                await websocket.send_text(json.dumps({"type": "strategy_init", "data": response}))
+            elif msg_type == "deposit":
+                response = await self.process_deposit(data.get("data"), user_id)
+                await websocket.send_text(json.dumps({"type": "deposit_complete", "data": response}))
