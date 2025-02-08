@@ -18,7 +18,7 @@ import {
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { icon: MessageSquare, label: "Chat", href: "/chat" },
+  { icon: MessageSquare, label: "Chat", href: "/" },
   { icon: Bot, label: "Manage Bots", href: "/manage-bots" },
 ]
 

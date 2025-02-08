@@ -1,3 +1,4 @@
+
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar-normal";
 import { auth } from '../(auth)/auth';
@@ -20,15 +21,15 @@ export default async function RootLayout({
       <head>
         {/* Add any head elements here */}
       </head>
-      <body className="overflow-hidden">
+      <body className="overflow-hidden"> {/* Prevent overflow on body */}
         <Script
           src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"
           strategy="beforeInteractive"
         />
         <SidebarProvider defaultOpen={!isCollapsed}>
-          <div className="flex">
-            <AppSidebar user={session?.user ?? null} />
-            <main className=" flex-1 overflow-hidden p-6">
+          <div className="flex h-screen">
+            <AppSidebar user={session?.user} />
+            <main className="flex-1 overflow-hidden p-6"> {/* Prevent overflow in main */}
               {children}
             </main>
           </div>
