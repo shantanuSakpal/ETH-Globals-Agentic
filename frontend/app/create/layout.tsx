@@ -1,5 +1,5 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar-normal";
+import { AppSidebar } from "@/components/app-sidebar";
 import { auth } from "../(auth)/auth";
 import { cookies } from "next/headers";
 import Script from "next/script";
@@ -28,7 +28,7 @@ export default async function RootLayout({
         <SidebarProvider defaultOpen={!isCollapsed}>
           <div className="flex h-screen">
             <AppSidebar user={session?.user} />
-            <main className="flex-1 overflow-hidden p-6">
+            <main className="flex-1  p-6">
               {" "}
               {/* Prevent overflow in main */}
               {children}

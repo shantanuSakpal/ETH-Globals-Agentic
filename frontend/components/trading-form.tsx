@@ -28,9 +28,11 @@ interface TradingFormProps {
 export function TradingForm({ onChange, data }: TradingFormProps) {
   return (
     <div className="space-y-6">
-      <Card className="border bg-background">
+      <Card className="border border-gray-300 bg-white shadow-sm">
         <CardHeader>
-          <CardTitle className="text-xl font-medium">ETH Collateral</CardTitle>
+          <CardTitle className="text-xl font-medium text-gray-800">
+            ETH Collateral
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center space-x-4">
@@ -43,24 +45,24 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
                   collateralAmount: Number(e.target.value) || 0,
                 })
               }
-              className="bg-background border"
+              className="border border-gray-300 bg-white text-gray-800"
               placeholder="0"
               min={0.1}
               step={0.1}
             />
-            <span className="text-sm font-medium">ETH</span>
+            <span className="text-sm font-medium text-gray-700">ETH</span>
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">Min: 0.1 ETH</p>
+          <p className="mt-2 text-sm text-gray-500">Min: 0.1 ETH</p>
         </CardContent>
       </Card>
 
       <div className="space-y-4">
         <div className="flex items-center gap-2">
-          <Label className="text-muted-foreground">Maximum Leverage</Label>
+          <Label className="text-gray-700">Maximum Leverage</Label>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
+                <InfoCircledIcon className="h-4 w-4 text-gray-500" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>
@@ -79,21 +81,21 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
           step={0.1}
           className="py-4"
         />
-        <div className="flex justify-between text-sm text-muted-foreground">
+        <div className="flex justify-between text-sm text-gray-500">
           <span>1x</span>
           <span>3x</span>
         </div>
       </div>
 
-      <Card className="border bg-background">
+      <Card className="border border-gray-300 bg-white shadow-sm">
         <CardHeader>
-          <CardTitle className="text-xl font-medium">
+          <CardTitle className="text-xl font-medium text-gray-800">
             Strategy Parameters
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label>Target APY (%)</Label>
+            <Label className="text-gray-700">Target APY (%)</Label>
             <Input
               type="number"
               value={data.targetApy || ""}
@@ -103,7 +105,7 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
                   targetApy: Number.parseFloat(e.target.value) || 0,
                 })
               }
-              className="mt-2"
+              className="mt-2 border border-gray-300 text-gray-800"
               placeholder="10.0"
               min={0}
               max={100}
@@ -112,7 +114,7 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
           </div>
 
           <div>
-            <Label>Minimum Collateral Ratio</Label>
+            <Label className="text-gray-700">Minimum Collateral Ratio</Label>
             <Input
               type="number"
               value={data.minCollateralRatio || ""}
@@ -122,7 +124,7 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
                   minCollateralRatio: Number.parseFloat(e.target.value) || 0,
                 })
               }
-              className="mt-2"
+              className="mt-2 border border-gray-300 text-gray-800"
               placeholder="1.5"
               min={1.1}
               max={2}
@@ -131,7 +133,7 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
           </div>
 
           <div>
-            <Label>Rebalance Threshold (%)</Label>
+            <Label className="text-gray-700">Rebalance Threshold (%)</Label>
             <Input
               type="number"
               value={data.rebalanceThreshold || ""}
@@ -141,7 +143,7 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
                   rebalanceThreshold: Number.parseFloat(e.target.value) || 0,
                 })
               }
-              className="mt-2"
+              className="mt-2 border border-gray-300 text-gray-800"
               placeholder="5.0"
               min={1}
               max={20}
@@ -153,19 +155,23 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
 
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <Label className="text-muted-foreground">Slippage Tolerance</Label>
+          <Label className="text-gray-700">Slippage Tolerance</Label>
           <Select
             value={data.slippageTolerance.toString()}
             onValueChange={(value) =>
               onChange({ ...data, slippageTolerance: Number.parseFloat(value) })
             }
           >
-            <SelectTrigger className="w-[100px] bg-background border">
+            <SelectTrigger className="w-[100px] border border-gray-300 bg-white text-gray-800">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white shadow-md">
               {SLIPPAGE_OPTIONS.map((option) => (
-                <SelectItem key={option.value} value={option.value.toString()}>
+                <SelectItem
+                  key={option.value}
+                  value={option.value.toString()}
+                  className="text-gray-800"
+                >
                   {option.label}
                 </SelectItem>
               ))}

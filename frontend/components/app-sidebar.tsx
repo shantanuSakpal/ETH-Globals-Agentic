@@ -13,6 +13,7 @@ import {
   Bot,
   Zap,
   HelpCircle,
+  PenBox,
 } from "lucide-react";
 import {
   Sidebar,
@@ -38,6 +39,7 @@ export function AppSidebar({ user }: { user: User | undefined }) {
     { icon: MessageSquare, label: "Chat", href: "/" },
     { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
     { icon: Bot, label: "Manage Bots", href: "/manage-bots" },
+    { icon: PenBox, label: "Create", href: "/create" },
   ];
 
   const pathname = usePathname();
@@ -93,9 +95,7 @@ export function AppSidebar({ user }: { user: User | undefined }) {
                     <Link
                       href={item.href}
                       className={`flex items-center gap-2 p-2 rounded-md w-full ${
-                        isActive
-                          ? "bg-gray-300 text-black hover:bg-gray-300"
-                          : ""
+                        isActive ? "bg-gray-300 text-black " : ""
                       }`}
                     >
                       <item.icon
