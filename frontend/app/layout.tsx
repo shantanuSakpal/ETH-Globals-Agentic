@@ -5,8 +5,8 @@ import { PrivyAuthProvider } from "@/components/privyAuthProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Your App Name",
-  description: "Your app description",
+  title: "Helenus",
+  description: "AI-Powered Yield Optimization. Maximum Gains, Minimum Risk.",
 };
 
 export const viewport = {

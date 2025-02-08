@@ -1,36 +1,31 @@
-"use client"
+"use client";
 
-import { Switch } from "@/components/ui/switch"
-import { Line, LineChart, ResponsiveContainer } from "recharts"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import {useRouter} from "next/navigation"
-// Define the bot type to match your data structure
+import { Switch } from "@/components/ui/switch";
+import { Line, LineChart, ResponsiveContainer } from "recharts";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
 interface Bot {
-  id: number
-  pair: string
-  profitGained: string
-  percentageGain: string
-  workingTime: string
-  status: string
-  totalBalance: string
-  orders: string
-  isActive: boolean
-  data: Array<{ value: number }>
+  id: number;
+  pair: string;
+  profitGained: string;
+  percentageGain: string;
+  workingTime: string;
+  status: string;
+  totalBalance: string;
+  orders: string;
+  isActive: boolean;
+  data: Array<{ value: number }>;
 }
 
-// Update BotCard to accept children and className props
 interface BotCardProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 function BotCard({ children, className = "" }: BotCardProps) {
-  return (
-    <Card className={className}>
-      {children}
-    </Card>
-  )
+  return <Card className={className}>{children}</Card>;
 }
 
 const data = [
@@ -41,7 +36,7 @@ const data = [
   { value: 125 },
   { value: 140 },
   { value: 135 },
-]
+];
 
 const bots: Bot[] = [
   {
@@ -80,27 +75,30 @@ const bots: Bot[] = [
     isActive: false,
     data: [...data.map((d) => ({ value: d.value * 0.5 }))],
   },
-]
+];
 
 export default function TradingBots() {
   const router = useRouter();
 
   return (
-    <div className="min-w-full bg-black text-white p-6">
+    <div className="min-w-full bg-gray-100 text-gray-900 p-6">
       <div className="mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-semibold">AI Trading Strategies</h1>
           <Button
             onClick={() => router.push("/create")}
-            className="bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 dark:hover:bg-zinc-200 text-zinc-50 dark:text-zinc-900 hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
+            className="bg-blue-600 hover:bg-blue-500 text-white py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
           >
             + Add Strategy
-          </Button> 
+          </Button>
         </div>
 
         <div className="space-y-4">
           {bots.map((bot) => (
-            <BotCard key={bot.id} className="bg-zinc-900/50 border-zinc-800">
+            <BotCard
+              key={bot.id}
+              className="bg-white border border-gray-300 shadow-sm rounded-lg"
+            >
               <div className="p-6">
                 <div className="grid grid-cols-12 gap-6">
                   {/* Trading Pair and Chart */}
@@ -130,22 +128,32 @@ export default function TradingBots() {
                   {/* Stats */}
                   <div className="col-span-7 grid grid-cols-4 gap-6">
                     <div>
-                      <p className="text-zinc-400 text-sm mb-1">Profit gained</p>
-                      <p className="text-lg font-medium text-green-500">{bot.profitGained}</p>
-                      <p className="text-sm text-red-500">{bot.percentageGain}</p>
+                      <p className="text-gray-600 text-sm mb-1">
+                        Profit gained
+                      </p>
+                      <p className="text-lg font-medium text-green-600">
+                        {bot.profitGained}
+                      </p>
+                      <p className="text-sm text-red-600">
+                        {bot.percentageGain}
+                      </p>
                     </div>
                     <div>
-                      <p className="text-zinc-400 text-sm mb-1">Working time</p>
+                      <p className="text-gray-600 text-sm mb-1">Working time</p>
                       <p className="text-lg font-medium">{bot.workingTime}</p>
-                      <p className="text-sm text-zinc-400">{bot.status}</p>
+                      <p className="text-sm text-gray-600">{bot.status}</p>
                     </div>
                     <div>
-                      <p className="text-zinc-400 text-sm mb-1">Total Balance</p>
+                      <p className="text-gray-600 text-sm mb-1">
+                        Total Balance
+                      </p>
                       <p className="text-lg font-medium">{bot.totalBalance}</p>
-                      <p className="text-sm text-zinc-400">Orders: {bot.orders}</p>
+                      <p className="text-sm text-gray-600">
+                        Orders: {bot.orders}
+                      </p>
                     </div>
                     <div>
-                      <p className="text-zinc-400 text-sm mb-1">Exchange</p>
+                      <p className="text-gray-600 text-sm mb-1">Exchange</p>
                       <div className="flex gap-1">
                         <div className="w-6 h-6 rounded-full bg-blue-500" />
                         <div className="w-6 h-6 rounded-full bg-purple-500" />
@@ -170,5 +178,5 @@ export default function TradingBots() {
         </div>
       </div>
     </div>
-  )
+  );
 }
