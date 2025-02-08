@@ -48,37 +48,12 @@ class WebSocketService:
             return {"type": "error", "data": {"message": str(e)}}
 
     async def process_strategy_selection(self, data: Dict[str, Any], user_id: str) -> Dict[str, Any]:
-
-        #   """Process strategy selection business logic"""
-        # vault = await self.vault_service.create_vault(data, user_id)
-        # if not vault:
-        #     raise Exception("Failed to create vault")
-            
-        # return {
-        #     "type": "strategy_initialized",
-        #     "data": {
-        #         "vault_id": vault.id,
-        #         "status": vault.status,
-        #         "deposit_address": vault.settings.get("deposit_address")
-        #     }
-        # }
         try:
-            # Step 1: Create vault
+            # Step 1: Create vault and initialize strategy; this creates the vault record.
             vault = await self.vault_service.create_vault(data, user_id)
             if not vault:
                 raise Exception("Failed to create vault")
             
-                
-            # # Initialize agent
-            # agent_success = await self.agent_manager.initialize_strategy(
-            #     vault.id,
-            #     data["strategy_id"]
-            # )
-            
-            # if not agent_success:
-            #     raise Exception("Failed to initialize agent")
-
-
             # Step 2: Initialize agent
             success = await self.agent_manager.add_agent(
                 agent_id=vault.id,
@@ -86,24 +61,29 @@ class WebSocketService:
                     "vault_id": vault.id,
                     "strategy_id": data["strategy_id"],
                     "initial_deposit": data.get("initial_deposit", 0),
-                    "parameters": data.get("parameters", {})
+                    "parameters": data.get("parameters", {}),
+                    # The agent must have its own wallet information, used later for funding
+                    "wallet_data": data.get("agent_wallet_data")
                 }
             )
             
             if not success:
                 raise Exception("Failed to initialize agent")
-                
-            # Step 3: Start monitoring
+            
+            # Step 3: Start monitoring (if applicable)
             await self.monitor.start_monitoring(vault.id)
             
+            # Return instructions to the frontend:
+            # The returned deposit_address may be None at this point.
+            response_data = {
+                "vault_id": vault.id,
+                "status": "initialized",
+                "deposit_address": vault.settings.get("deposit_address") if vault.settings else None,
+                "message": "Strategy initialized successfully. Please fund the agent wallet with gas to continue."
+            }
             return {
                 "type": WSMessageType.STRATEGY_INIT,
-                "data": {
-                    "vault_id": vault.id,
-                    "status": "initialized",
-                    "deposit_address": vault.settings.get("deposit_address"),
-                    "message": "Strategy initialized successfully"
-                }
+                "data": response_data
             }
         except Exception as e:
             logger.error(f"Strategy selection error: {str(e)}")

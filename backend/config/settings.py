@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key-here")
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    JWT_SECRET: str = os.getenv("JWT_SECRET", "your-jwt-secret-key-here")
     
     # Database
     DATABASE_URL: Optional[str] = os.getenv("DATABASE_URL")
@@ -31,9 +32,26 @@ class Settings(BaseSettings):
     # Price Feed Settings
     PRICE_FEED_API_KEY: Optional[str] = os.getenv("PRICE_FEED_API_KEY")
     
+    # CDP Settings
+    CDP_API_KEY_NAME: str = os.getenv("CDP_API_KEY_NAME", "")
+    CDP_API_KEY_PRIVATE_KEY: str = os.getenv("CDP_API_KEY_PRIVATE_KEY", "")
+    NETWORK_ID: str = os.getenv("NETWORK_ID", "base-sepolia")
+    
+    # LLM Settings
+    LLM_MODEL: str = "gpt-4"
+
+    #DATABASE SETTINGS
+    MONGODB_URL: str = os.getenv("MONGODB_URL")
+    DATABASE_NAME: str = os.getenv("DATABASE_NAME")
+    
+    # Add WebSocket settings
+    WS_HEARTBEAT_INTERVAL: int = 30  # seconds
+    WS_CONNECTION_TIMEOUT: int = 60  # seconds
+    
     class Config:
         env_file = ".env"
         case_sensitive = True
+        env_file_encoding = 'utf-8'
 
 @lru_cache()
 def get_settings() -> Settings:

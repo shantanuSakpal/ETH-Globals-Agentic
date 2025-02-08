@@ -9,60 +9,56 @@ from cdp_langchain.utils import CdpAgentkitWrapper
 
 # Define Borrow Action Input Schema
 class MorphoBorrowInput(BaseModel):
-    """Input argument schema for Morpho borrow action."""
-    
+    """Input parameters for borrowing"""
     collateral_token: str = Field(
         ...,
-        description="Address of the collateral token"
+        description="Address of collateral token"
     )
     debt_token: str = Field(
         ...,
-        description="Address of the token to borrow"
+        description="Address of token to borrow"
     )
-    borrow_amount: float = Field(
+    borrow_amount: Decimal = Field(
         ...,
-        description="Amount to borrow in token decimals",
-        gt=0
+        gt=0,
+        description="Amount to borrow"
     )
-    max_slippage: Optional[float] = Field(
-        default=0.01,
-        description="Maximum allowed slippage (default 1%)",
+    max_slippage: Optional[Decimal] = Field(
+        default=0.005,
         ge=0,
-        le=1
+        le=0.1,
+        description="Maximum allowed slippage (0.5% default)"
     )
 
 MORPHO_BORROW_PROMPT = """
-This tool enables borrowing assets from the Morpho protocol using provided collateral.
-The action will:
-1. Validate the borrowing parameters
-2. Check position health
-3. Execute the borrow transaction
-4. Return transaction details and new position information
+Borrow assets from Morpho protocol using provided collateral.
+Requires collateral token, debt token, and borrow amount.
 """
 
 def morpho_borrow(
     wallet: Wallet,
     collateral_token: str,
     debt_token: str,
-    borrow_amount: float,
-    max_slippage: Optional[float] = 0.01
-) -> str:
-    """Execute a borrow action on Morpho protocol.
+    borrow_amount: Decimal,
+    max_slippage: Optional[Decimal] = None
+) -> dict:
+    """
+    Execute borrow action on Morpho protocol
     
     Args:
         wallet: CDP Wallet instance
-        collateral_token: Collateral token address
-        debt_token: Token to borrow address
+        collateral_token: Address of collateral token
+        debt_token: Address of token to borrow
         borrow_amount: Amount to borrow
         max_slippage: Maximum allowed slippage
         
     Returns:
-        str: Transaction result details
+        dict: Result of borrow action
     """
     try:
         # Convert amount to Wei
-        amount_in_wei = Web3.to_wei(borrow_amount, 'ether')
-        slippage_bps = int(max_slippage * 10000)
+        amount_in_wei = Web3.to_wei(float(borrow_amount), 'ether')
+        slippage_bps = int(max_slippage * 10000) if max_slippage else 500
         
         # Build borrow payload
         payload = {
@@ -80,15 +76,18 @@ def morpho_borrow(
         tx_result = wallet.sign_and_execute_transaction(payload).wait()
         
         # Format response
-        return (
-            f"Borrow transaction successful!\n"
-            f"Transaction Hash: {tx_result['transactionHash']}\n"
-            f"Borrowed Amount: {borrow_amount} {debt_token}\n"
-            f"Collateral Token: {collateral_token}"
-        )
-        
+        return {
+            "success": True,
+            "transaction_hash": tx_result['transactionHash'],
+            "borrowed_amount": borrow_amount,
+            "collateral_token": collateral_token,
+            "debt_token": debt_token
+        }
     except Exception as e:
-        return f"Borrow action failed: {str(e)}"
+        return {
+            "success": False,
+            "error": str(e)
+        }
 
 def initialize_morpho_tools(agentkit: CdpAgentkitWrapper, tools: list) -> list:
     """Initialize Morpho-specific CDP tools"""

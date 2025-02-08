@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional
 from datetime import datetime, timedelta
-from backend.models.market import MarketData, MarketDataList, MarketMetadata
+from models.market import MarketData, MarketDataList
 from services.price_feed import PriceFeed
 import logging
 from api.websocket.manager import manager

@@ -1,2 +1,6 @@
 venv/
 .env
+
+# backend
+connect_db.py
+
