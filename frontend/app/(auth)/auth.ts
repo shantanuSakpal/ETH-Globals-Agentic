@@ -1,61 +1,55 @@
-// frontend/app/(auth)/auth.ts
-import { cookies } from "next/headers";
-import crypto from "crypto";
-import { getUser, createUser } from "@/lib/db/queries";
+import { compare } from "bcrypt-ts";
+import NextAuth, { type User, type Session } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 
-function getUUIDFromWallet(walletAddress: string): string {
-  const NAMESPACE = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
-  return crypto
-    .createHash("sha1")
-    .update(NAMESPACE + walletAddress)
-    .digest()
-    .subarray(0, 16)
-    .toString("hex")
-    .replace(/(.{8})(.{4})(.{4})(.{4})(.{12})/, "$1-$2-$3-$4-$5");
+import { getUser } from "@/lib/db/queries";
+
+import { authConfig } from "./auth.config";
+
+interface ExtendedSession extends Session {
+  user: User;
 }
 
-export interface User {
-  id: string;
-  email?: string;
-  walletAddress?: string;
-}
-
-export async function auth(): Promise<{ user?: User | null }> {
-  try {
-    const cookieStore = cookies();
-    const walletAddress = cookieStore.get("wallet-address")?.value;
-
-    if (!walletAddress) {
-      return { user: null };
-    }
-
-    const userId = getUUIDFromWallet(walletAddress);
-
-    // Check if user exists, if not create them
-    const [existingUser] = await getUser(walletAddress);
-
-    if (!existingUser) {
-      // Create user with wallet address as email and a default password
-      await createUser(walletAddress, "default-password");
-    }
-
-    return {
-      user: {
-        id: userId,
-        walletAddress: walletAddress,
-        email: walletAddress,
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
+  ...authConfig,
+  providers: [
+    Credentials({
+      credentials: {},
+      async authorize({ email, password }: any) {
+        const users = await getUser(email);
+        if (users.length === 0) return null;
+        // biome-ignore lint: Forbidden non-null assertion.
+        const passwordsMatch = await compare(password, users[0].password!);
+        if (!passwordsMatch) return null;
+        return users[0] as any;
       },
-    };
-  } catch (error) {
-    console.error("Auth error:", error);
-    return { user: null };
-  }
-}
+    }),
+  ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
 
-export async function signIn(provider: string, credentials: any) {
-  return true;
-}
+      return token;
+    },
+    async session({
+      session,
+      token,
+    }: {
+      session: ExtendedSession;
+      token: any;
+    }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+      }
 
-export async function signOut() {
-  return true;
-}
+      return session;
+    },
+  },
+});

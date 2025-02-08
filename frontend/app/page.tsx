@@ -1,6 +1,6 @@
-"use client"
-import type { NextPage } from 'next';
-import ConnectWalletButton  from '@/components/wallet-button';
+"use client";
+import type { NextPage } from "next";
+import ConnectWalletButton from "@/components/wallet-button";
 
 const Home: NextPage = () => {
   return (
@@ -9,9 +9,7 @@ const Home: NextPage = () => {
       <nav className="p-6 border-b border-gray-800">
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold text-blue-500">CryptoX</div>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
-            Get Started
-          </button>
+
           <ConnectWalletButton />
         </div>
       </nav>
@@ -37,13 +35,16 @@ const Home: NextPage = () => {
       {/* Features Section */}
       <section className="bg-gray-800 py-20">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose CryptoX?</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose CryptoX?
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="bg-gray-700 p-8 rounded-lg text-center">
               <h3 className="text-xl font-bold mb-4">Secure Transactions</h3>
               <p className="text-gray-400">
-                Your assets are protected with state-of-the-art encryption and blockchain technology.
+                Your assets are protected with state-of-the-art encryption and
+                blockchain technology.
               </p>
             </div>
 
@@ -51,7 +52,8 @@ const Home: NextPage = () => {
             <div className="bg-gray-700 p-8 rounded-lg text-center">
               <h3 className="text-xl font-bold mb-4">Fast & Reliable</h3>
               <p className="text-gray-400">
-                Experience lightning-fast transactions with minimal fees and no downtime.
+                Experience lightning-fast transactions with minimal fees and no
+                downtime.
               </p>
             </div>
 
@@ -59,7 +61,8 @@ const Home: NextPage = () => {
             <div className="bg-gray-700 p-8 rounded-lg text-center">
               <h3 className="text-xl font-bold mb-4">Decentralized</h3>
               <p className="text-gray-400">
-                Take control of your finances with a fully decentralized platform.
+                Take control of your finances with a fully decentralized
+                platform.
               </p>
             </div>
           </div>
