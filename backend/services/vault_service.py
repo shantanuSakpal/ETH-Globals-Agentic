@@ -15,7 +15,7 @@ import uuid
 from models.websocket import WSMessage, WSMessageType
 import os
 import asyncio
-from blockchain.vault_factory import VaultFactoryClient
+from utils.vault_factory import VaultFactoryClient
 
 logger = logging.getLogger(__name__)
 
