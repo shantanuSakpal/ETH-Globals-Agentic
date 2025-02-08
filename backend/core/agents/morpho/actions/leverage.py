@@ -5,38 +5,33 @@ from decimal import Decimal
 from typing import Dict, Any, Optional
 from web3 import Web3
 
+MORPHO_LEVERAGE_PROMPT = """
+Adjust leverage for a Morpho protocol position.
+Requires position ID, target leverage, and action type (increase/decrease).
+"""
+
 class MorphoLeverageInput(BaseModel):
-    """Input schema for Morpho leverage action"""
+    """Input parameters for leverage adjustment"""
     position_id: str = Field(
         ...,
-        description="ID of the position to adjust leverage"
+        description="Unique identifier of the position"
     )
-    target_leverage: float = Field(
+    target_leverage: Decimal = Field(
         ...,
-        description="Target leverage ratio (e.g., 2.0 for 2x leverage)",
-        gt=1,
-        le=5  # Maximum leverage allowed
+        ge=1.0,
+        description="Target leverage ratio"
     )
     action_type: str = Field(
         ...,
-        description="Type of leverage action: 'increase' or 'decrease'",
-        regex="^(increase|decrease)$"
+        pattern="^(increase|decrease)$",
+        description="Type of leverage adjustment (increase/decrease)"
     )
-    max_slippage: Optional[float] = Field(
-        default=0.01,
-        description="Maximum allowed slippage (default 1%)",
+    max_slippage: Optional[Decimal] = Field(
+        default=0.005,
         ge=0,
-        le=1
+        le=0.1,
+        description="Maximum allowed slippage (0.5% default)"
     )
-
-MORPHO_LEVERAGE_PROMPT = """
-This tool enables adjusting position leverage on the Morpho protocol using flash loans.
-The action will:
-1. Validate current position health
-2. Calculate required flash loan or repayment amount
-3. Execute leverage adjustment transaction
-4. Return transaction details and new position information
-"""
 
 def morpho_leverage(
     wallet: Wallet,

@@ -1,30 +1,42 @@
 export interface CollateralOption {
-    value: string
-    label: string
-    chain: string
-  }
-  
-  export interface SynthOption {
-    value: string
-    label: string
-    maxAmount: number
-  }
-  
-  export interface TradingFormData {
-    collateralAmount: number
-    selectedCollateral: string
-    loopMultiplier: number
-    synthAmount: number
-    selectedSynth: string
-    slippageTolerance: number
-  }
-  
-  export interface SummaryData {
-    estimatedApy: number
-    yourLoop: number
-    totalDeposited: number
-    totalSynthBorrowed: number
-    synthBalanceFee: number
-  }
-  
-  
+  value: string
+  label: string
+  chain: string
+}
+
+export interface SynthOption {
+  value: string
+  label: string
+  maxAmount: number
+}
+
+export interface ETHLoopFormData {
+  // Core Parameters
+  collateralAmount: number
+  maxLeverage: number
+  minCollateralRatio: number
+  targetApy: number
+  rebalanceThreshold: number
+  slippageTolerance: number
+  riskLevel: 'Low' | 'Medium' | 'High'
+}
+
+export interface ETHLoopSummaryData {
+  estimatedApy: number
+  leverage: number
+  totalDeposited: number
+  totalBorrowed: number
+  healthFactor: number
+  riskLevel: 'Low' | 'Medium' | 'High'
+}
+
+export interface TradingFormData {
+  collateralAmount: number
+  selectedCollateral: string
+  loopMultiplier: number
+  synthAmount: number
+  selectedSynth: string
+  slippageTolerance: number
+  rebalanceThreshold: number
+}
+

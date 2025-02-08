@@ -2,23 +2,22 @@ from datetime import datetime
 from typing import Dict, Any, Optional, Set, List
 
 from cdp import Wallet
-from backend.core.agents.morpho.actions.repay import MORPHO_REPAY_PROMPT, morpho_repay
+from core.agents.morpho.actions.repay import MORPHO_REPAY_PROMPT, morpho_repay
 from fastapi import WebSocket
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from cdp_langchain.agent_toolkits import CdpToolkit
 from cdp_langchain.utils import CdpAgentkitWrapper
-from ..base_agent import BaseAgent
-from services.morpho_client import MorphoClient
+from core.agents.base_agent import BaseAgent
 from services.price_feed import PriceFeed
 from enum import Enum
 import logging
 import asyncio
 from langchain.schema import HumanMessage
 from cdp_langchain.tools import CdpTool
-from backend.core.agents.morpho.actions.borrow import MorphoBorrowInput, morpho_borrow, MORPHO_BORROW_PROMPT
-from backend.core.agents.morpho.actions.leverage import MORPHO_LEVERAGE_PROMPT, MorphoLeverageInput, morpho_leverage
-from backend.core.agents.morpho.actions.repay import MorphoRepayInput, morpho_repay
+from core.agents.morpho.actions.borrow import MorphoBorrowInput, morpho_borrow, MORPHO_BORROW_PROMPT
+from core.agents.morpho.actions.leverage import MORPHO_LEVERAGE_PROMPT, MorphoLeverageInput, morpho_leverage
+from core.agents.morpho.actions.repay import MorphoRepayInput, morpho_repay
 from cdp_agentkit_core.actions.morpho.deposit import MorphoDepositInput, deposit_to_morpho
 from cdp_agentkit_core.actions.morpho.withdraw import MorphoWithdrawInput, withdraw_from_morpho
 
@@ -37,7 +36,6 @@ class MorphoAgent(BaseAgent):
     
     def __init__(self, strategy_params: Dict[str, Any], settings: Any):
         super().__init__(strategy_params, settings)
-        self.morpho_client = None
         self.price_feed = None
         self.cdp_wrapper = None
         self.llm = None
@@ -97,18 +95,12 @@ class MorphoAgent(BaseAgent):
             self.tools.extend(morpho_tools)
             
             # Initialize other services
-            self.morpho_client = MorphoClient(
-                web3_provider=self.settings.WEB3_PROVIDER_URI,
-                contract_address=self.settings.MORPHO_CONTRACT_ADDRESS
-            )
-            
             self.price_feed = PriceFeed(
                 api_key=self.settings.PRICE_FEED_API_KEY
             )
             
             # Validate connections
             await asyncio.gather(
-                self.morpho_client.validate_connection(),
                 self.price_feed.validate_connection()
             )
             
@@ -253,7 +245,7 @@ class MorphoAgent(BaseAgent):
                 return True
                 
             if decision["action"] == "open_long":
-                success = await self.morpho_client.open_position(
+                success = await self.cdp_wrapper.open_position(
                     size=decision["size"],
                     leverage=decision["leverage"],
                     position_type="long"
@@ -268,7 +260,7 @@ class MorphoAgent(BaseAgent):
                     }
                     
             elif decision["action"] == "adjust_position":
-                success = await self.morpho_client.adjust_position(
+                success = await self.cdp_wrapper.adjust_position(
                     position_id=self.current_position["id"],
                     size_delta=decision["size_delta"]
                 )
@@ -390,30 +382,6 @@ class MorphoAgent(BaseAgent):
         }
         for connection in self.active_connections:
             await connection.send_json(message)
-            
-    async def handle_client_message(self, websocket: WebSocket, message: Dict[str, Any]):
-        """Handle incoming messages from frontend"""
-        try:
-            message_type = message.get("type")
-            data = message.get("data", {})
-            
-            if message_type == "strategy_select":
-                await self.handle_strategy_selection(data)
-            elif message_type == "execute_action":
-                await self.handle_action_execution(data)
-            elif message_type == "position_query":
-                await self.handle_position_query(data)
-            else:
-                await websocket.send_json({
-                    "type": "error",
-                    "data": {"message": f"Unknown message type: {message_type}"}
-                })
-                
-        except Exception as e:
-            await websocket.send_json({
-                "type": "error",
-                "data": {"message": str(e)}
-            })
 
     async def execute_borrow(self, params: Dict[str, Any]) -> Dict[str, Any]:
         """Execute borrow action through CDP AgentKit"""

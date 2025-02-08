@@ -6,7 +6,7 @@ from models.api import (
     StrategyResponse,
     StrategyList
 )
-from backend.core.agents.morpho.agent import MorphoAgent
+from core.agents.morpho.agent import MorphoAgent
 from config.settings import get_settings
 import logging
 
@@ -39,7 +39,7 @@ async def create_strategy(strategy: StrategyCreate):
     try:
         # Initialize the Morpho agent with the strategy parameters
         agent = MorphoAgent(
-            strategy_params=strategy.dict(),
+            strategy_params=strategy.model_dump(),
             settings=settings
         )
         
