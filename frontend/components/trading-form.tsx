@@ -1,17 +1,28 @@
-"use client"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { COLLATERAL_OPTIONS, SLIPPAGE_OPTIONS } from "@/lib/constant"
-import type { ETHLoopFormData } from "@/components/types/trading"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { InfoCircledIcon } from "@radix-ui/react-icons"
+"use client";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { COLLATERAL_OPTIONS, SLIPPAGE_OPTIONS } from "@/lib/constant";
+import type { ETHLoopFormData } from "@/components/types/trading";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 interface TradingFormProps {
-  onChange: (data: ETHLoopFormData) => void
-  data: ETHLoopFormData
+  onChange: (data: ETHLoopFormData) => void;
+  data: ETHLoopFormData;
 }
 
 export function TradingForm({ onChange, data }: TradingFormProps) {
@@ -26,7 +37,12 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
             <Input
               type="number"
               value={data.collateralAmount || ""}
-              onChange={(e) => onChange({ ...data, collateralAmount: Number(e.target.value) || 0 })}
+              onChange={(e) =>
+                onChange({
+                  ...data,
+                  collateralAmount: Number(e.target.value) || 0,
+                })
+              }
               className="bg-background border"
               placeholder="0"
               min={0.1}
@@ -47,7 +63,10 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
                 <InfoCircledIcon className="h-4 w-4 text-muted-foreground" />
               </TooltipTrigger>
               <TooltipContent>
-                <p>Higher leverage means higher potential returns but also higher risk</p>
+                <p>
+                  Higher leverage means higher potential returns but also higher
+                  risk
+                </p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -68,7 +87,9 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
 
       <Card className="border bg-background">
         <CardHeader>
-          <CardTitle className="text-xl font-medium">Strategy Parameters</CardTitle>
+          <CardTitle className="text-xl font-medium">
+            Strategy Parameters
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
@@ -76,7 +97,12 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
             <Input
               type="number"
               value={data.targetApy || ""}
-              onChange={(e) => onChange({ ...data, targetApy: Number.parseFloat(e.target.value) || 0 })}
+              onChange={(e) =>
+                onChange({
+                  ...data,
+                  targetApy: Number.parseFloat(e.target.value) || 0,
+                })
+              }
               className="mt-2"
               placeholder="10.0"
               min={0}
@@ -84,13 +110,18 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
               step={0.1}
             />
           </div>
-          
+
           <div>
             <Label>Minimum Collateral Ratio</Label>
             <Input
               type="number"
               value={data.minCollateralRatio || ""}
-              onChange={(e) => onChange({ ...data, minCollateralRatio: Number.parseFloat(e.target.value) || 0 })}
+              onChange={(e) =>
+                onChange({
+                  ...data,
+                  minCollateralRatio: Number.parseFloat(e.target.value) || 0,
+                })
+              }
               className="mt-2"
               placeholder="1.5"
               min={1.1}
@@ -104,7 +135,12 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
             <Input
               type="number"
               value={data.rebalanceThreshold || ""}
-              onChange={(e) => onChange({ ...data, rebalanceThreshold: Number.parseFloat(e.target.value) || 0 })}
+              onChange={(e) =>
+                onChange({
+                  ...data,
+                  rebalanceThreshold: Number.parseFloat(e.target.value) || 0,
+                })
+              }
               className="mt-2"
               placeholder="5.0"
               min={1}
@@ -120,7 +156,9 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
           <Label className="text-muted-foreground">Slippage Tolerance</Label>
           <Select
             value={data.slippageTolerance.toString()}
-            onValueChange={(value) => onChange({ ...data, slippageTolerance: Number.parseFloat(value) })}
+            onValueChange={(value) =>
+              onChange({ ...data, slippageTolerance: Number.parseFloat(value) })
+            }
           >
             <SelectTrigger className="w-[100px] bg-background border">
               <SelectValue />
@@ -136,5 +174,5 @@ export function TradingForm({ onChange, data }: TradingFormProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

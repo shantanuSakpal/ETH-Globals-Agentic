@@ -18,19 +18,19 @@ export function AuthForm({
     <Form action={action} className="flex flex-col gap-4 px-4 sm:px-16">
       <div className="flex flex-col gap-2">
         <Label
-          htmlFor="email"
+          htmlFor="text"
           className="text-zinc-600 font-normal dark:text-zinc-400"
         >
           Email Address
         </Label>
 
         <Input
-          id="email"
-          name="email"
+          id="text"
+          name="text"
           className="bg-muted text-md md:text-sm"
-          type="email"
+          type="text"
           placeholder="user@acme.com"
-          autoComplete="email"
+          autoComplete=""
           required
           autoFocus
           defaultValue={defaultEmail}
