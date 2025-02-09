@@ -19,10 +19,10 @@ class StrategyManager:
         try:
             # Create vault
             vault = Vault(
-                **vault_create.dict(),
+                **vault_create.model_dump(),
                 id=str(uuid.uuid4()),
                 status=VaultStatus.PENDING,
-                current_balance=vault_create.initial_deposit,
+                balance=vault_create.initial_deposit,
                 created_at=datetime.now(),
                 updated_at=datetime.now()
             )
@@ -41,10 +41,15 @@ class StrategyManager:
             if success:
                 vault.status = VaultStatus.ACTIVE
                 self.vaults[vault.id] = vault
+                print(f"Creating vault with balance: {vault_create.initial_deposit}")
+                print(f"Vault created: {vars(vault)}")
                 return vault
                 
             return None
-
+            # else:
+            #     await self.db.delete_vault(vault.id)  # If using DB
+            #     return None
+        
         except Exception as e:
             self.logger.error(f"Error initializing strategy: {str(e)}")
             return None

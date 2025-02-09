@@ -11,8 +11,8 @@ class StrategyDB(BaseModel):
     risk_level: RiskLevel
     status: StrategyStatus = StrategyStatus.ACTIVE
     parameters: Dict[str, Any]
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=datetime.now)
+    updated_at: datetime = Field(default_factory=datetime.now)
 
 class VaultDB(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -21,8 +21,9 @@ class VaultDB(BaseModel):
     status: str = "pending"
     initial_deposit: float
     current_balance: float
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    settings: Optional[Dict[str, Any]] = None
+    created_at: datetime = Field(default_factory=datetime.now)
+    updated_at: datetime = Field(default_factory=datetime.now)
 
 class PositionDB(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -34,5 +35,14 @@ class PositionDB(BaseModel):
     current_price: float
     pnl: float
     status: PositionStatus
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=datetime.now)
+    updated_at: datetime = Field(default_factory=datetime.now)
+
+class WalletDB(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    cdp_wallet_id: str
+    address: str
+    status: str = "active"
+    created_at: datetime = Field(default_factory=datetime.now)
+    updated_at: datetime = Field(default_factory=datetime.now)

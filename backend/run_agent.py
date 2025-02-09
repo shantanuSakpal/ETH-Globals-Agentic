@@ -1,4 +1,4 @@
-from backend.agents.morpho.agent import MorphoAgent
+from core.agents.morpho.agent import MorphoAgent
 from config.settings import get_settings
 import asyncio
 import logging

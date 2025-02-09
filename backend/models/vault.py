@@ -24,3 +24,5 @@ class Vault(BaseModel):
     created_at: datetime
     updated_at: datetime
     settings: Optional[Dict[str, Any]] = None
+
+

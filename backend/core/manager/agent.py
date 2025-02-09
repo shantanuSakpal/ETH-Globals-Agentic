@@ -1,6 +1,6 @@
 from typing import Dict, Optional
-from backend.config import settings
-from backend.core.agents.morpho.agent import MorphoAgent
+from config import settings
+from core.agents.morpho.agent import MorphoAgent
 import asyncio
 import logging
 

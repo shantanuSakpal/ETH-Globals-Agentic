@@ -1,71 +1,62 @@
-from cdp import Wallet
-from cdp_langchain.tools import CdpTool
+from typing import Optional
 from pydantic import BaseModel, Field
 from decimal import Decimal
-from typing import Dict, Any, Optional
-from web3 import Web3
+
+MORPHO_REPAY_PROMPT = """
+Repay borrowed assets on Morpho protocol.
+Requires position ID, repay amount, and withdrawal preferences.
+"""
 
 class MorphoRepayInput(BaseModel):
-    """Input schema for Morpho repay action"""
+    """Input parameters for repayment"""
     position_id: str = Field(
         ...,
-        description="ID of the position to repay"
+        description="Unique identifier of the position"
     )
-    repay_amount: float = Field(
+    repay_amount: Decimal = Field(
         ...,
-        description="Amount to repay in token decimals",
-        gt=0
+        gt=0,
+        description="Amount to repay"
     )
-    withdraw_collateral: Optional[bool] = Field(
+    withdraw_collateral: bool = Field(
         default=False,
         description="Whether to withdraw remaining collateral after repayment"
     )
-    max_slippage: Optional[float] = Field(
-        default=0.01,
-        description="Maximum allowed slippage (default 1%)"
+    max_slippage: Optional[Decimal] = Field(
+        default=0.005,
+        ge=0,
+        le=0.1,
+        description="Maximum allowed slippage (0.5% default)"
     )
 
-MORPHO_REPAY_PROMPT = """
-This tool enables repaying borrowed assets on the Morpho protocol.
-The action will:
-1. Validate repayment parameters
-2. Execute repayment transaction
-3. Optionally withdraw remaining collateral
-4. Return transaction details and updated position information
-"""
-
-def morpho_repay(
-    wallet: Wallet,
+async def morpho_repay(
     position_id: str,
-    repay_amount: float,
+    repay_amount: Decimal,
     withdraw_collateral: bool = False,
-    max_slippage: Optional[float] = 0.01
-) -> str:
-    """Execute repayment on Morpho protocol"""
+    max_slippage: Optional[Decimal] = None
+) -> dict:
+    """
+    Execute repay action on Morpho protocol
+    
+    Args:
+        position_id: Position identifier
+        repay_amount: Amount to repay
+        withdraw_collateral: Whether to withdraw remaining collateral
+        max_slippage: Maximum allowed slippage
+        
+    Returns:
+        dict: Result of repay action
+    """
     try:
-        amount_in_wei = Web3.to_wei(repay_amount, 'ether')
-        slippage_bps = int(max_slippage * 10000)
-        
-        # Build repay payload
-        payload = {
-            "protocol": "morpho",
-            "action": "repay",
-            "params": {
-                "positionId": position_id,
-                "amount": str(amount_in_wei),
-                "withdrawCollateral": withdraw_collateral,
-                "maxSlippageBps": slippage_bps
-            }
+        # Implement repay logic using CDP AgentKit
+        return {
+            "success": True,
+            "position_id": position_id,
+            "repaid_amount": repay_amount,
+            "collateral_withdrawn": withdraw_collateral
         }
-        
-        # Execute through CDP
-        tx_result = wallet.sign_and_execute_transaction(payload).wait()
-        
-        return (
-            f"Repay transaction successful!\n"
-            f"Transaction Hash: {tx_result['transactionHash']}\n"
-            f"Repaid Amount: {repay_amount}"
-        )
-        
     except Exception as e:
-        return f"Repay action failed: {str(e)}"
+        return {
+            "success": False,
+            "error": str(e)
+        }

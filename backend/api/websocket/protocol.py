@@ -3,6 +3,7 @@ from typing import AsyncIterator, Optional
 import asyncio
 import logging
 from models.websocket import WSMessage
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +31,7 @@ class WebSocketProtocol:
         self.websocket = websocket
         self.connected = False
         self._ping_task: Optional[asyncio.Task] = None
+        self.last_heartbeat = datetime.now()
         self.user_id: Optional[str] = None
         
     async def accept(self) -> None:
@@ -64,6 +66,16 @@ class WebSocketProtocol:
         if self._ping_task:
             self._ping_task.cancel()
         await self.websocket.close(code=code)
+
+    async def send_json(self, data: dict):
+        await self.websocket.send_json(data)
+        
+    async def receive_json(self) -> dict:
+        return await self.websocket.receive_json()
+        
+    async def heartbeat(self):
+        self.last_heartbeat = datetime.now()
+        await self.send_json({"type": "heartbeat"})
 
     # async def handle_strategy_message(self, message: WSMessage) -> None:
     #     """Handle strategy selection and initialization"""

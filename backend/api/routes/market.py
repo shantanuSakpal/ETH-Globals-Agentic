@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 from models.market import MarketData, MarketDataList
 from services.price_feed import PriceFeed
 import logging
+from api.websocket.manager import manager
+from models.websocket import WSMessage, WSMessageType
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -19,6 +21,16 @@ async def get_current_price(symbol: str):
     """
     try:
         market_data = await price_feed.get_market_data(symbol)
+        
+        # Broadcast to WebSocket clients
+        await manager.broadcast_message(
+            message=WSMessage(
+                type=WSMessageType.MARKET_UPDATE,
+                data=market_data
+            ),
+            topic=f"market_{symbol}"
+        )
+        
         return market_data
         
     except Exception as e:

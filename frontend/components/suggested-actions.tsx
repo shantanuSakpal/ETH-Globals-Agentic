@@ -1,42 +1,41 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Button } from './ui/button';
-import { ChatRequestOptions, CreateMessage, Message } from 'ai';
-import { memo } from 'react';
+import { motion } from "framer-motion";
+import { Button } from "./ui/button";
+import { ChatRequestOptions, CreateMessage, Message } from "ai";
+import { memo } from "react";
 
 interface SuggestedActionsProps {
   chatId: string;
   append: (
     message: Message | CreateMessage,
-    chatRequestOptions?: ChatRequestOptions,
+    chatRequestOptions?: ChatRequestOptions
   ) => Promise<string | null | undefined>;
 }
 
 function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
   const suggestedActions = [
     {
-        title: 'Mint an NFT',
-        label: 'Create and mint your own unique NFT.',
-        action: 'Mint an NFT',
+      title: "Adaptive Yield Farming",
+      label: "Adjusts allocation, entry/exit, and compounding dynamically",
+      action: "Adaptive Yield Farming",
     },
     {
-        title: 'Launch a meme coin',
-        label: 'Start your own meme cryptocurrency.',
-        action: 'Launch a meme coin',
+      title: "Launch a meme coin",
+      label: "Start your own meme cryptocurrency.",
+      action: "Launch a meme coin",
     },
     {
-        title: 'Create a Crypto Trading Bot',
-        label: 'Bot to automate your crypto trading strategies.',
-        action: 'Create a Crypto Trading Bot',
+      title: "Create a Crypto Trading Bot",
+      label: "Bot to automate your crypto trading strategies.",
+      action: "Create a Crypto Trading Bot",
     },
     {
-        title: 'Explore Yield Farming',
-        label: 'Learn how to earn rewards through yield farming.',
-        action: 'Explore Yield Farming',
+      title: "Explore Yield Farming",
+      label: "Learn how to earn rewards through yield farming.",
+      action: "Explore Yield Farming",
     },
-];
-
+  ];
 
   return (
     <div className="grid sm:grid-cols-2 gap-2 w-full">
@@ -47,22 +46,22 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
           exit={{ opacity: 0, y: 20 }}
           transition={{ delay: 0.05 * index }}
           key={`suggested-action-${suggestedAction.title}-${index}`}
-          className={index > 1 ? 'hidden sm:block' : 'block'}
+          className={index > 1 ? "hidden sm:block" : "block"}
         >
           <Button
             variant="ghost"
             onClick={async () => {
-              window.history.replaceState({}, '', `/chat/${chatId}`);
+              window.history.replaceState({}, "", `/chat/${chatId}`);
 
               append({
-                role: 'user',
+                role: "user",
                 content: suggestedAction.action,
               });
             }}
-            className="text-left border rounded-xl px-4 py-3.5 text-sm flex-1 gap-1 sm:flex-col w-full h-auto justify-start items-start"
+            className="text-left border rounded-xl px-4 py-3.5 text-sm flex-1 gap-1 sm:flex-col w-full h-auto justify-start items-start h-full"
           >
             <span className="font-medium">{suggestedAction.title}</span>
-            <span className="text-muted-foreground">
+            <span className="text-muted-foreground text-wrap">
               {suggestedAction.label}
             </span>
           </Button>

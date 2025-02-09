@@ -7,7 +7,8 @@ from models.position import (
     PositionResponse,
     PositionList
 )
-from services.morpho_client import MorphoClient
+from cdp_langchain.agent_toolkits import CdpToolkit
+from cdp_langchain.utils import CdpAgentkitWrapper
 from config.settings import get_settings
 import logging
 
@@ -15,16 +16,44 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
-# Initialize Morpho client
-morpho_client = MorphoClient(
-    web3_provider=settings.WEB3_PROVIDER_URI,
-    contract_address=settings.MORPHO_CONTRACT_ADDRESS
-)
+# Initialize CDP AgentKit
+cdp_wrapper = None
+cdp_toolkit = None
+
+def get_cdp_wrapper():
+    global cdp_wrapper
+    if cdp_wrapper is None:
+        try:
+            cdp_wrapper = CdpAgentkitWrapper(
+                api_key_name=settings.CDP_API_KEY_NAME,
+                api_key_private_key=settings.CDP_API_KEY_PRIVATE_KEY,
+                network_id=settings.NETWORK_ID
+            )
+            logger.info("CDP wrapper initialized successfully")
+        except Exception as e:
+            logger.error(f"Failed to initialize CDP wrapper: {str(e)}")
+            if not settings.DEBUG:
+                raise
+    return cdp_wrapper
+
+def get_cdp_toolkit():
+    global cdp_toolkit
+    if cdp_toolkit is None:
+        wrapper = get_cdp_wrapper()
+        if wrapper:
+            try:
+                cdp_toolkit = CdpToolkit.from_cdp_agentkit_wrapper(wrapper)
+                logger.info("CDP toolkit initialized successfully")
+            except Exception as e:
+                logger.error(f"Failed to initialize CDP toolkit: {str(e)}")
+                if not settings.DEBUG:
+                    raise
+    return cdp_toolkit
 
 @router.post("/", response_model=PositionResponse)
 async def open_position(position: PositionCreate):
     """
-    Open a new trading position
+    Open a new trading position using CDP AgentKit
     
     Args:
         position: Position creation parameters
@@ -37,25 +66,24 @@ async def open_position(position: PositionCreate):
                 detail=f"Strategy {position.strategy_id} not found"
             )
             
-        # Open position
-        success = await morpho_client.open_position(
-            size=position.size,
-            leverage=position.leverage,
-            position_type=position.position_type
+        # Open position using CDP AgentKit
+        result = await get_cdp_toolkit().execute_action(
+            "open_position",
+            {
+                "size": position.size,
+                "leverage": position.leverage,
+                "position_type": position.position_type,
+                "strategy_id": position.strategy_id
+            }
         )
         
-        if not success:
+        if not result.success:
             raise HTTPException(
                 status_code=500,
-                detail="Failed to open position"
+                detail=f"Failed to open position: {result.error}"
             )
             
-        # Get position details
-        position_data = await morpho_client.get_position(
-            position.strategy_id
-        )
-        
-        return position_data
+        return result.data
         
     except HTTPException as e:
         raise e
@@ -75,13 +103,18 @@ async def get_position(position_id: str):
         position_id: ID of the position
     """
     try:
-        position = await morpho_client.get_position(position_id)
-        if not position:
+        result = await get_cdp_toolkit().execute_action(
+            "get_position",
+            {"position_id": position_id}
+        )
+        
+        if not result.success:
             raise HTTPException(
                 status_code=404,
                 detail=f"Position {position_id} not found"
             )
-        return position
+            
+        return result.data
         
     except HTTPException as e:
         raise e
@@ -108,9 +141,18 @@ async def get_strategy_positions(strategy_id: str):
                 detail=f"Strategy {strategy_id} not found"
             )
             
-        # Get positions
-        positions = await _get_strategy_positions(strategy_id)
-        return {"positions": positions}
+        result = await get_cdp_toolkit().execute_action(
+            "get_strategy_positions",
+            {"strategy_id": strategy_id}
+        )
+        
+        if not result.success:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to fetch positions: {result.error}"
+            )
+            
+        return {"positions": result.data}
         
     except HTTPException as e:
         raise e
@@ -134,38 +176,21 @@ async def update_position(
         position_update: Position update parameters
     """
     try:
-        # Get current position
-        current_position = await morpho_client.get_position(position_id)
-        if not current_position:
+        result = await get_cdp_toolkit().execute_action(
+            "update_position",
+            {
+                "position_id": position_id,
+                **position_update.model_dump(exclude_unset=True)
+            }
+        )
+        
+        if not result.success:
             raise HTTPException(
-                status_code=404,
-                detail=f"Position {position_id} not found"
+                status_code=500,
+                detail=f"Failed to update position: {result.error}"
             )
             
-        # Calculate size delta
-        if position_update.size is not None:
-            size_delta = position_update.size - current_position["size"]
-            
-            # Adjust position
-            success = await morpho_client.adjust_position(
-                position_id=position_id,
-                size_delta=size_delta
-            )
-            
-            if not success:
-                raise HTTPException(
-                    status_code=500,
-                    detail="Failed to update position"
-                )
-                
-        # Update stop loss and take profit
-        if position_update.stop_loss is not None:
-            current_position["stop_loss"] = position_update.stop_loss
-            
-        if position_update.take_profit is not None:
-            current_position["take_profit"] = position_update.take_profit
-            
-        return current_position
+        return result.data
         
     except HTTPException as e:
         raise e
@@ -185,20 +210,15 @@ async def close_position(position_id: str):
         position_id: ID of the position to close
     """
     try:
-        # Validate position exists
-        position = await morpho_client.get_position(position_id)
-        if not position:
-            raise HTTPException(
-                status_code=404,
-                detail=f"Position {position_id} not found"
-            )
-            
-        # Close position
-        success = await morpho_client.close_position(position_id)
-        if not success:
+        result = await get_cdp_toolkit().execute_action(
+            "close_position",
+            {"position_id": position_id}
+        )
+        
+        if not result.success:
             raise HTTPException(
                 status_code=500,
-                detail="Failed to close position"
+                detail=f"Failed to close position: {result.error}"
             )
             
         return {
@@ -217,10 +237,11 @@ async def close_position(position_id: str):
 
 async def _validate_strategy(strategy_id: str) -> bool:
     """Validate that a strategy exists"""
-    # Implement strategy validation logic
-    return True
-
-async def _get_strategy_positions(strategy_id: str) -> List[dict]:
-    """Get all positions for a strategy"""
-    # Implement position fetching logic
-    return [] 
+    try:
+        result = await get_cdp_toolkit().execute_action(
+            "validate_strategy",
+            {"strategy_id": strategy_id}
+        )
+        return result.success
+    except Exception:
+        return False 

@@ -1,29 +1,29 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import type { ETHLoopSummaryData } from "@/components/types/trading"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import type { ETHLoopSummaryData } from "@/components/types/trading";
 
 interface SummaryProps {
-  data: ETHLoopSummaryData
-  onConfirm: () => void
-  isLoading?: boolean
+  data: ETHLoopSummaryData;
+  onConfirm: () => void;
+  isLoading?: boolean;
 }
 
 export function Summary({ data, onConfirm, isLoading }: SummaryProps) {
-  const formatCurrency = (value: number) => `$${value.toFixed(2)}`
-  const formatPercent = (value: number) => `${value.toFixed(2)}%`
+  const formatCurrency = (value: number) => `$${value.toFixed(2)}`;
+  const formatPercent = (value: number) => `${value.toFixed(2)}%`;
 
   const getRiskColor = (risk: string) => {
     switch (risk) {
-      case 'Low':
-        return 'text-green-500'
-      case 'Medium':
-        return 'text-yellow-500'
-      case 'High':
-        return 'text-red-500'
+      case "Low":
+        return "text-green-500";
+      case "Medium":
+        return "text-yellow-500";
+      case "High":
+        return "text-red-500";
       default:
-        return ''
+        return "";
     }
-  }
+  };
 
   return (
     <Card className="border bg-background">
@@ -34,7 +34,9 @@ export function Summary({ data, onConfirm, isLoading }: SummaryProps) {
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Estimated APY</p>
-            <p className="text-lg font-medium">{formatPercent(data.estimatedApy)}</p>
+            <p className="text-lg font-medium">
+              {formatPercent(data.estimatedApy)}
+            </p>
           </div>
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Current Leverage</p>
@@ -57,7 +59,9 @@ export function Summary({ data, onConfirm, isLoading }: SummaryProps) {
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Risk Level</span>
-            <span className={getRiskColor(data.riskLevel)}>{data.riskLevel}</span>
+            <span className={getRiskColor(data.riskLevel)}>
+              {data.riskLevel}
+            </span>
           </div>
         </div>
 
@@ -66,6 +70,5 @@ export function Summary({ data, onConfirm, isLoading }: SummaryProps) {
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }
-
