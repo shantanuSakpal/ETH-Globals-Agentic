@@ -21,7 +21,7 @@ class WalletService:
         
         # Configure CDP SDK
         try:
-            Cdp.configure(self.api_key_name, self.api_key_private_key)
+            Cdp.configure(self.api_key_name, self.api_key_private_key, use_server_signer=True)
             logger.info("CDP SDK has been successfully configured with CDP API key")
         except Exception as e:
             logger.error(f"Failed to configure CDP SDK: {str(e)}")
