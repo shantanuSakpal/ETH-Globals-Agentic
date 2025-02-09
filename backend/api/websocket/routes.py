@@ -1,5 +1,8 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends
-from api.middleware.auth import ws_auth
+import logging
+import os
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+# Comment out the auth dependency import for hackathon purposes
+# from api.middleware.auth import ws_auth
 from services.websocket import WebSocketService
 from services.vault_service import VaultService
 from core.manager.agent import AgentManager
@@ -7,7 +10,6 @@ from services.monitor import StrategyMonitor
 from api.dependencies import get_connection_manager
 from api.websocket.manager import manager
 from services.price_feed import PriceFeed
-import logging
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -42,17 +44,36 @@ Usage:
 """
 
 @router.websocket("/ws/agent/{client_id}")
-async def agent_websocket(websocket: WebSocket, client_id: str, user: dict = Depends(ws_auth)):
+#async def agent_websocket(websocket: WebSocket, client_id: str, user: dict = Depends(ws_auth)):
+async def agent_websocket(websocket: WebSocket, client_id: str):
+    """
+    For hackathon purposes, we're disabling auth. To simulate multiple users,
+    we qualify each connection with its unique client_id.
+    """
+    # Use client_id to generate a unique dummy user for each connection.
+    dummy_user = {"id": client_id}
+    
+    # Step 2: Log unique information to confirm the updated code is running.
+    logger.info("Disabled auth route is now active (using dummy users)")
+    logger.info(f"Running from: {os.path.abspath(__file__)}")
+    logger.info(f"User connected as: {dummy_user['id']}")
+    
     await websocket.accept()
     try:
         while True:
             message = await websocket.receive_json()
+            # Optional: log the received message to observe behavior per user.
+            logger.info(f"Received message from {dummy_user['id']}: {message}")
             message_type = message.get("type")
             data = message.get("data", {})
-            response = await ws_service.handle_message(message_type, data, user["id"])
+            #response = await ws_service.handle_message(message_type, data, user["id"])
+            
+            # Use dummy_user["id"] where you'd normally use the authenticated user's ID.
+            response = await ws_service.handle_message(message_type, data, dummy_user["id"])
+            logger.info(f"Sending response to {dummy_user['id']}: {response}")
             await websocket.send_json(response)
     except WebSocketDisconnect:
-        logger.info("WebSocket disconnected")
+        logger.info(f"WebSocket disconnected for user: {dummy_user['id']}")
 
 
 

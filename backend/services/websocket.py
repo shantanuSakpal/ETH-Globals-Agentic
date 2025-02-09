@@ -5,8 +5,6 @@ from core.manager.agent import AgentManager
 #from core.manager.strategy_monitor import StrategyMonitor
 from services.monitor import StrategyMonitor
 import logging
-import json
-from fastapi import WebSocket
 
 logger = logging.getLogger(__name__)
 
@@ -50,49 +48,62 @@ class WebSocketService:
             return {"type": "error", "data": {"message": str(e)}}
 
     async def process_strategy_selection(self, data: Dict[str, Any], user_id: str) -> Dict[str, Any]:
+
+        #   """Process strategy selection business logic"""
+        # vault = await self.vault_service.create_vault(data, user_id)
+        # if not vault:
+        #     raise Exception("Failed to create vault")
+            
+        # return {
+        #     "type": "strategy_initialized",
+        #     "data": {
+        #         "vault_id": vault.id,
+        #         "status": vault.status,
+        #         "deposit_address": vault.settings.get("deposit_address")
+        #     }
+        # }
         try:
-            # Step 1: Create vault and initialize strategy; this creates the vault record.
+            # Step 1: Create vault
             vault = await self.vault_service.create_vault(data, user_id)
             if not vault:
                 raise Exception("Failed to create vault")
             
-            # Step 2: Ensure agent wallet data is available.
-            # If not provided by the client, create one using WalletService.
-            wallet_data = data.get("agent_wallet_data")
-            if not wallet_data:
-                from services.wallet_service import WalletService
-                wallet_service = WalletService()
-                wallet_data = await wallet_service.create_agent_wallet(user_id)
+                
+            # # Initialize agent
+            # agent_success = await self.agent_manager.initialize_strategy(
+            #     vault.id,
+            #     data["strategy_id"]
+            # )
             
-            # Step 3: Initialize agent with wallet data.
+            # if not agent_success:
+            #     raise Exception("Failed to initialize agent")
+
+
+            # Step 2: Initialize agent
             success = await self.agent_manager.add_agent(
                 agent_id=vault.id,
                 strategy_params={
                     "vault_id": vault.id,
                     "strategy_id": data["strategy_id"],
                     "initial_deposit": data.get("initial_deposit", 0),
-                    "parameters": data.get("parameters", {}),
-                    "wallet_data": wallet_data
+                    "parameters": data.get("parameters", {})
                 }
             )
             
             if not success:
                 raise Exception("Failed to initialize agent")
-            
-            # Step 4: Start monitoring for this vault.
+                
+            # Step 3: Start monitoring
             await self.monitor.start_monitoring(vault.id)
             
-            # Return instructions to the frontend:
-            # The returned deposit_address may be None at this point.
-            response_data = {
-                "vault_id": vault.id,
-                "status": "initialized",
-                "deposit_address": vault.settings.get("deposit_address") if vault.settings else None,
-                "message": "Strategy initialized successfully. Please fund the agent wallet with gas to continue."
-            }
             return {
                 "type": WSMessageType.STRATEGY_INIT,
-                "data": response_data
+                "data": {
+                    "vault_id": vault.id,
+                    "status": "initialized",
+                    "deposit_address": vault.settings.get("deposit_address"),
+                    "message": "Strategy initialized successfully"
+                }
             }
         except Exception as e:
             logger.error(f"Strategy selection error: {str(e)}")
@@ -102,7 +113,7 @@ class WebSocketService:
             }
 
     async def process_deposit(self, data: Dict[str, Any], user_id: str) -> Dict[str, Any]:
-        """Process deposit business logic which will check for vault deployment if needed."""
+        """Process deposit business logic"""
         result = await self.vault_service.handle_deposit(
             user_id=user_id,
             vault_id=data["vault_id"],
@@ -114,16 +125,3 @@ class WebSocketService:
             "type": "deposit_complete",
             "data": result
         }
-
-    async def websocket_handler(self, websocket: WebSocket, user_id: str):
-        await websocket.accept()
-        while True:
-            message = await websocket.receive_text()
-            data = json.loads(message)
-            msg_type = data.get("type")
-            if msg_type == "strategy_select":
-                response = await self.process_strategy_selection(data.get("data"), user_id)
-                await websocket.send_text(json.dumps({"type": "strategy_init", "data": response}))
-            elif msg_type == "deposit":
-                response = await self.process_deposit(data.get("data"), user_id)
-                await websocket.send_text(json.dumps({"type": "deposit_complete", "data": response}))

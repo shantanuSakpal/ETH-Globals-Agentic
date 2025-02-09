@@ -4,3 +4,211 @@
 2025-02-08 18:44:47,209 - core.manager.agent - INFO - Initializing agent manager
 2025-02-08 18:45:23,436 - core.manager.agent - INFO - Initializing agent manager
 2025-02-08 18:46:25,918 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 19:39:01,966 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 19:43:45,273 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 19:51:43,367 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:24:19,951 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:26:05,256 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:26:50,300 - api.middleware.auth - INFO - Auth header found: ...
+2025-02-08 20:26:50,300 - api.middleware.auth - INFO - WS Auth - Attempting authentication with token (first 20 chars): None...
+2025-02-08 20:26:50,301 - api.middleware.auth - ERROR - WS Auth - No token found in headers or query params
+2025-02-08 20:26:50,301 - api.middleware.auth - ERROR - WS Auth - Authentication failed: 401: Missing authentication token
+2025-02-08 20:27:48,763 - api.middleware.auth - INFO - Auth header found: ...
+2025-02-08 20:27:48,764 - api.middleware.auth - INFO - WS Auth - Attempting authentication with token (first 20 chars): None...
+2025-02-08 20:27:48,764 - api.middleware.auth - ERROR - WS Auth - No token found in headers or query params
+2025-02-08 20:27:48,764 - api.middleware.auth - ERROR - WS Auth - Authentication failed: 401: Missing authentication token
+2025-02-08 20:30:34,265 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:30:40,796 - api.middleware.auth - INFO - Auth header found: Bearer dummy_token...
+2025-02-08 20:30:40,797 - api.middleware.auth - INFO - WS Auth - Attempting authentication with token (first 20 chars): dummy_token...
+2025-02-08 20:30:40,797 - api.middleware.auth - INFO - Validating token (first 20 chars): dummy_token...
+2025-02-08 20:30:40,797 - api.middleware.auth - ERROR - JWT validation error: Not enough segments
+2025-02-08 20:30:40,797 - api.middleware.auth - ERROR - Token that failed validation (first 20 chars): dummy_token...
+2025-02-08 20:30:40,797 - api.middleware.auth - ERROR - WS Auth - Authentication failed: 401: Invalid token
+2025-02-08 20:39:42,093 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:39:53,980 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:43:51,248 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:44:26,122 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 20:44:35,778 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client with headers: {'Authorization': 'Bearer dummy_token'}
+2025-02-08 20:44:35,794 - api.middleware.auth - INFO - Auth header found: Bearer dummy_token...
+2025-02-08 20:44:35,794 - api.middleware.auth - INFO - WS Auth - Attempting authentication with token (first 20 chars): dummy_token...
+2025-02-08 20:44:35,794 - api.middleware.auth - INFO - Validating token (first 20 chars): dummy_token...
+2025-02-08 20:44:35,795 - api.middleware.auth - ERROR - JWT validation error: Not enough segments
+2025-02-08 20:44:35,795 - api.middleware.auth - ERROR - Token that failed validation (first 20 chars): dummy_token...
+2025-02-08 20:44:35,795 - api.middleware.auth - ERROR - WS Auth - Authentication failed: 401: Invalid token
+2025-02-08 20:44:35,797 - tests.websocket_test - ERROR - Connection failed: server rejected WebSocket connection: HTTP 401
+2025-02-08 20:45:54,023 - api.middleware.auth - INFO - Auth header found: ...
+2025-02-08 20:45:54,023 - api.middleware.auth - INFO - WS Auth - Attempting authentication with token (first 20 chars): None...
+2025-02-08 20:45:54,024 - api.middleware.auth - ERROR - WS Auth - No token found in headers or query params
+2025-02-08 20:45:54,024 - api.middleware.auth - ERROR - WS Auth - Authentication failed: 401: Missing authentication token
+2025-02-08 21:00:48,991 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:01:35,648 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:02:08,618 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:02:16,011 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:03:31,698 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:04:19,290 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:10:54,498 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:13:40,479 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:14:41,407 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:17:13,103 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 21:18:24,388 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client with headers: {'Authorization': 'Bearer dummy_token'}
+2025-02-08 21:18:24,439 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-08 21:18:24,441 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-08 21:18:24,441 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-08 21:18:24,451 - tests.websocket_test - INFO - Connected successfully
+2025-02-08 21:18:24,457 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-08 21:18:24,462 - services.vault_service - ERROR - Failed to create vault: 2 validation errors for Vault
+user_id
+  Field required [type=missing, input_value={'id': '8d082827-db82-4cc...457920), 'settings': {}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+balance
+  Field required [type=missing, input_value={'id': '8d082827-db82-4cc...457920), 'settings': {}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-02-08 21:18:24,462 - services.websocket - ERROR - Strategy selection error: Failed to create vault
+2025-02-08 21:18:24,462 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Failed to create vault'}}
+2025-02-08 21:18:24,464 - tests.websocket_test - ERROR - Error Message - Failed to create vault
+2025-02-08 21:18:26,369 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-08 21:18:26,368 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-08 21:18:26,377 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-08 21:18:26,377 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-08 21:18:26,378 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:57> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-08 22:05:33,291 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 23:25:07,430 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 23:26:53,606 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 23:47:05,369 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 23:48:09,064 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 23:50:57,151 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 23:58:45,625 - core.manager.agent - INFO - Initializing agent manager
+2025-02-08 23:58:57,491 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:04:42,650 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:05:10,025 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:05:39,106 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:06:07,582 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:16:32,482 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:40:28,377 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:40:37,118 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:41:27,851 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 00:48:04,141 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 02:27:15,252 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 02:29:49,654 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client with headers: {'Authorization': 'Bearer dummy_token'}
+2025-02-09 02:29:50,511 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 02:29:50,552 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 02:29:50,552 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 02:29:50,605 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 02:29:50,644 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 02:29:52,490 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 02:29:52,498 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 02:29:52,498 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 02:29:52,500 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:57> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 02:29:55,505 - services.websocket - ERROR - Strategy selection error: Header value must be str or bytes, not <class 'NoneType'>
+2025-02-09 02:29:55,507 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': "Header value must be str or bytes, not <class 'NoneType'>"}}
+2025-02-09 02:29:55,508 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 02:44:51,625 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 02:45:15,580 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 02:56:48,347 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 03:09:13,623 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 03:09:33,954 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client with headers: {'Authorization': 'Bearer dummy_token'}
+2025-02-09 03:09:33,972 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 03:09:33,973 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 03:09:33,973 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 03:09:33,978 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 03:09:33,981 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 03:09:35,724 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 03:09:35,728 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 03:09:35,729 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 03:09:35,730 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:57> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 03:09:36,260 - services.websocket - ERROR - Strategy selection error: Header value must be str or bytes, not <class 'NoneType'>
+2025-02-09 03:09:36,261 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': "Header value must be str or bytes, not <class 'NoneType'>"}}
+2025-02-09 03:09:36,262 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 03:14:47,970 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 03:41:50,294 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 03:42:08,433 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 03:42:08,445 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 03:42:08,446 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 03:42:08,446 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 03:42:08,449 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 03:42:08,451 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 03:42:10,075 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 03:42:10,087 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 03:42:10,089 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 03:42:10,092 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 03:42:12,677 - services.websocket - ERROR - Strategy selection error: Header value must be str or bytes, not <class 'NoneType'>
+2025-02-09 03:42:12,678 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': "Header value must be str or bytes, not <class 'NoneType'>"}}
+2025-02-09 03:42:12,679 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 03:49:45,741 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 03:49:52,384 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 03:49:52,393 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 03:49:52,393 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 03:49:52,394 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 03:49:52,396 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 03:49:52,398 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 03:49:53,906 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 03:49:53,913 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 03:49:53,915 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 03:49:53,917 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 03:49:55,800 - MorphoAgent - ERROR - Failed to initialize Morpho agent: module 'config.settings' has no attribute 'LLM_MODEL'
+2025-02-09 03:49:55,801 - services.websocket - ERROR - Strategy selection error: Failed to initialize agent
+2025-02-09 03:49:55,802 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Failed to initialize agent'}}
+2025-02-09 03:49:55,802 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 04:11:59,868 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:12:21,792 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 04:12:21,800 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 04:12:21,800 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 04:12:21,800 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 04:12:21,802 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 04:12:21,804 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 04:12:29,783 - MorphoAgent - ERROR - Failed to initialize Morpho agent: module 'config.settings' has no attribute 'LLM_MODEL'
+2025-02-09 04:12:29,783 - services.websocket - ERROR - Strategy selection error: Failed to initialize agent
+2025-02-09 04:12:29,784 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Failed to initialize agent'}}
+2025-02-09 04:12:29,786 - tests.websocket_test - ERROR - Error Message - Failed to initialize agent
+2025-02-09 04:12:30,780 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 04:12:30,780 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 04:12:30,785 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 04:12:30,786 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 04:12:30,788 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 04:18:29,091 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:26:00,501 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:26:10,949 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:27:07,536 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:27:14,486 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:27:29,859 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 04:27:29,872 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 04:27:29,873 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 04:27:29,873 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 04:27:29,877 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 04:27:29,880 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 04:27:35,374 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 04:27:35,379 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 04:27:35,380 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 04:27:35,382 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 04:27:41,345 - MorphoAgent - ERROR - Failed to initialize Morpho agent: module 'config.settings' has no attribute 'LLM_MODEL'
+2025-02-09 04:27:41,347 - services.websocket - ERROR - Strategy selection error: Failed to initialize agent
+2025-02-09 04:27:41,348 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Failed to initialize agent'}}
+2025-02-09 04:27:41,350 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client

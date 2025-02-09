@@ -48,10 +48,15 @@ class Settings(BaseSettings):
     WS_HEARTBEAT_INTERVAL: int = 30  # seconds
     WS_CONNECTION_TIMEOUT: int = 60  # seconds
     
+    # New field
+    VAULT_FACTORY_ADDRESS: str = os.getenv("VAULT_FACTORY_ADDRESS")
+    DEPLOYER_PRIVATE_KEY: str = os.getenv("DEPLOYER_PRIVATE_KEY")
+
     class Config:
         env_file = ".env"
         case_sensitive = True
         env_file_encoding = 'utf-8'
+        #extra = "forbid"
 
 @lru_cache()
 def get_settings() -> Settings:

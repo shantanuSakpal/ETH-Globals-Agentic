@@ -5,7 +5,7 @@ from config.settings import get_settings
 async def init_database():
     settings = get_settings()
     client = AsyncIOMotorClient(settings.MONGODB_URL)
-    db = client.helenus
+    db = client.helenus2
     
     # Create collections
     await db.create_collection("vaults")
@@ -18,6 +18,8 @@ async def init_database():
     await db.vaults.create_index("strategy_id")
     await db.strategies.create_index("user_id")
     await db.positions.create_index("vault_id")
+    await db.wallets.create_index("id")
+    await db.wallets.create_index("user_id")
     
     print("Database initialized successfully!")
 
