@@ -6,6 +6,7 @@ from config.settings import get_settings
 from services.database import DatabaseService
 from models.wallet import Wallet as WalletModel, WalletDB
 from cdp import Cdp, Wallet
+from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +22,7 @@ class WalletService:
         
         # Configure CDP SDK
         try:
-            Cdp.configure(self.api_key_name, self.api_key_private_key, use_server_signer=True)
+            Cdp.configure(self.api_key_name, self.api_key_private_key)
             logger.info("CDP SDK has been successfully configured with CDP API key")
         except Exception as e:
             logger.error(f"Failed to configure CDP SDK: {str(e)}")
@@ -53,6 +54,13 @@ class WalletService:
             
             # Export the wallet data
             wallet_data = wallet.export_data()
+            logger.info(f"wallet_data: {wallet_data}")
+            fetched_data = Wallet.fetch(wallet.id)
+            logger.info(f"fetched_data: {fetched_data}")
+            # imported_wallet = Wallet.import_data(fetched_data)
+        
+            # logger.info(f"imported_wallet: {imported_wallet.default_address}")
+        
             logger.info("Agent wallet created successfully from API.")
             
             now = datetime.now()
@@ -60,16 +68,17 @@ class WalletService:
             wallet_db = WalletDB(
                 id=str(uuid.uuid4()),
                 user_id=user_id,
-                cdp_wallet_id=str(wallet_data.get("id")),  # External wallet ID from CDP
-                address=str(wallet_data.get("address")),    # Wallet address
+                cdp_wallet_id=str(wallet.id),  # External wallet ID from CDP
+                #address=str(imported_wallet.default_address),    # Wallet address
+                address=str(wallet.default_address),    # Wallet address
                 created_at=now,
                 updated_at=now,
                 status="active",
-                wallet_data=wallet_data  # Store the complete wallet data
+                wallet_data={}  # Store the complete wallet data
             )
             
             # Persist the wallet in the database.
-            await self.db.create_agent_wallet(wallet_db)
+            #await self.db.create_agent_wallet(wallet_db)
             logger.info("Agent wallet persisted in the database.")
             
             # Create and return the domain model instance.
