@@ -13,7 +13,7 @@ class WalletDB(BaseModel):
     created_at: datetime
     updated_at: datetime
     status: str = "active"
-    
+    wallet_data: dict
 class Wallet(BaseModel):
     id: str
     user_id: str

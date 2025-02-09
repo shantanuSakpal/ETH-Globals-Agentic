@@ -5,6 +5,7 @@ from core.manager.agent import AgentManager
 #from core.manager.strategy_monitor import StrategyMonitor
 from services.monitor import StrategyMonitor
 import logging
+from services.wallet_service import WalletService
 
 logger = logging.getLogger(__name__)
 
@@ -67,9 +68,8 @@ class WebSocketService:
             vault = await self.vault_service.create_vault(data, user_id)
             if not vault:
                 raise Exception("Failed to create vault")
-            
-                
-            # # Initialize agent
+
+                  # # Initialize agent
             # agent_success = await self.agent_manager.initialize_strategy(
             #     vault.id,
             #     data["strategy_id"]
@@ -78,22 +78,33 @@ class WebSocketService:
             # if not agent_success:
             #     raise Exception("Failed to initialize agent")
 
-
-            # Step 2: Initialize agent
+            
+            # Step 2: Create agent wallet (automatic wallet creation)
+            try:
+                wallet_service = WalletService()
+                wallet_data = await wallet_service.create_agent_wallet(user_id)
+                logger.info(f"User ID: {user_id}")
+                logger.info(f"Agent wallet created: {wallet_data}")
+            except Exception as e:
+                logger.error(f"Failed to create agent wallet: {str(e)}")
+                raise Exception("Agent wallet creation failed")
+            
+            # Step 3: Initialize agent with wallet data in strategy parameters.
             success = await self.agent_manager.add_agent(
                 agent_id=vault.id,
                 strategy_params={
                     "vault_id": vault.id,
                     "strategy_id": data["strategy_id"],
                     "initial_deposit": data.get("initial_deposit", 0),
-                    "parameters": data.get("parameters", {})
+                    "parameters": data.get("parameters", {}),
+                    "wallet_data": wallet_data
                 }
             )
             
             if not success:
                 raise Exception("Failed to initialize agent")
                 
-            # Step 3: Start monitoring
+            # Step 4: Start monitoring
             await self.monitor.start_monitoring(vault.id)
             
             return {
@@ -103,6 +114,7 @@ class WebSocketService:
                     "status": "initialized",
                     "deposit_address": vault.settings.get("deposit_address"),
                     "message": "Strategy initialized successfully"
+                    
                 }
             }
         except Exception as e:

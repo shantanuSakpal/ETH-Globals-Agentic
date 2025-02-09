@@ -38,7 +38,7 @@ class Settings(BaseSettings):
     NETWORK_ID: str = os.getenv("NETWORK_ID", "base-sepolia")
     
     # LLM Settings
-    LLM_MODEL: str = "gpt-4"
+    LLM_MODEL: str = os.environ.get("LLM_MODEL", "gpt-4o")
 
     #DATABASE SETTINGS
     MONGODB_URL: str = os.getenv("MONGODB_URL")
@@ -51,6 +51,7 @@ class Settings(BaseSettings):
     # New field
     VAULT_FACTORY_ADDRESS: str = os.getenv("VAULT_FACTORY_ADDRESS")
     DEPLOYER_PRIVATE_KEY: str = os.getenv("DEPLOYER_PRIVATE_KEY")
+   
 
     class Config:
         env_file = ".env"

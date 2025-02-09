@@ -212,3 +212,529 @@ task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() r
 2025-02-09 04:27:41,347 - services.websocket - ERROR - Strategy selection error: Failed to initialize agent
 2025-02-09 04:27:41,348 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Failed to initialize agent'}}
 2025-02-09 04:27:41,350 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 04:31:00,804 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:31:25,832 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:31:42,630 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:32:30,535 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:37:46,334 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:40:50,674 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:49:45,053 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:50:49,403 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:57:39,958 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:57:56,800 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:58:22,090 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 04:59:09,485 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 05:00:02,883 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 05:00:30,992 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 05:00:43,737 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 05:00:59,020 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 05:29:07,219 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:18:26,351 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:23:10,099 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:23:10,236 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:23:10,243 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:23:10,243 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:23:10,256 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:23:10,265 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:23:12,910 - services.websocket - ERROR - Failed to create agent wallet: Wallet.create() got an unexpected keyword argument 'network'
+2025-02-09 06:23:12,911 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:23:12,912 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:23:12,914 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:23:16,341 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:23:16,340 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:23:16,348 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:23:16,350 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:23:16,357 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:25:11,836 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:25:23,822 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:26:15,306 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:26:39,070 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:26:39,080 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:26:39,080 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:26:39,080 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:26:39,083 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:26:39,085 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:26:40,929 - services.wallet_service - ERROR - Failed to create wallet: Wallet.create() got an unexpected keyword argument 'network'
+2025-02-09 06:26:40,929 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:26:40,930 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:26:40,931 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:26:40,932 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:26:44,574 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:26:44,574 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:26:44,582 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:26:44,583 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:26:44,585 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:27:43,849 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:27:55,711 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:28:09,860 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:28:33,795 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:28:33,810 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:28:33,810 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:28:33,810 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:28:33,813 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:28:33,814 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:28:36,291 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:28:36,291 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:28:36,291 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:28:36,292 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:28:36,293 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:28:39,328 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:28:39,327 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:28:39,331 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:28:39,332 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:28:39,334 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:29:16,571 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:29:19,983 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:29:19,990 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:29:19,991 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:29:19,991 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:29:19,992 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:29:19,993 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:29:22,400 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:29:22,400 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:29:22,400 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:29:22,401 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:29:22,402 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:29:25,508 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:29:25,507 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:29:25,510 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:29:25,511 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:29:25,512 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:29:54,667 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:30:29,646 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:30:37,152 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:30:37,161 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:30:37,161 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:30:37,162 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:30:37,165 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:30:37,166 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:30:39,205 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:30:39,206 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:30:39,206 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:30:39,208 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:30:39,210 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:30:42,637 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:30:42,637 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:30:42,662 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:30:42,663 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:30:42,664 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:32:50,337 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:32:56,257 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:32:56,264 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:32:56,264 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:32:56,265 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:32:56,266 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:32:56,267 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:32:58,110 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:32:58,111 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:32:58,111 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:32:58,112 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:32:58,113 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:33:01,970 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:33:01,969 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:33:01,975 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:33:01,976 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:33:01,979 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:35:29,212 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:35:32,606 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:35:32,613 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:35:32,614 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:35:32,614 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:35:32,616 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:35:32,617 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:35:35,441 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:35:35,441 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:35:35,441 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:35:35,443 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:35:35,444 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:35:38,061 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:35:38,060 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:35:38,063 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:35:38,064 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:35:38,065 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:36:24,155 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:36:28,361 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:36:28,365 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:36:28,366 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:36:28,366 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:36:28,368 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:36:28,369 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:36:30,723 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:36:30,723 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:36:30,724 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:36:30,725 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:36:30,725 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:36:33,833 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:36:33,833 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:36:33,835 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:36:33,836 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:36:33,837 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:40:16,726 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:40:54,833 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:41:20,932 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:42:48,712 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:43:46,699 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:43:50,406 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:43:50,414 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:43:50,415 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:43:50,415 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:43:50,417 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:43:50,419 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:43:55,967 - services.wallet_service - ERROR - Failed to create wallet: All connection attempts failed
+2025-02-09 06:43:55,967 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:43:55,967 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:43:55,969 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:43:55,971 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:43:58,844 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:43:58,844 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:43:58,863 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:43:58,864 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:43:58,865 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:44:42,051 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:44:49,129 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:48:03,926 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:49:38,757 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:50:06,605 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:50:22,475 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:50:36,907 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:50:36,915 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:50:36,916 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:50:36,916 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:50:36,919 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:50:36,921 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:50:39,463 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:50:39,463 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:50:39,463 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:50:39,464 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:50:39,465 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:50:42,400 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:50:42,398 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:50:42,406 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:50:42,408 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:50:42,410 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:52:03,429 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:52:30,725 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:52:36,172 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:52:36,179 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:52:36,180 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:52:36,180 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:52:36,183 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:52:36,185 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:52:38,151 - services.wallet_service - INFO - Wallet creation started for user: test_client
+2025-02-09 06:52:38,151 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 06:52:38,151 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:52:38,151 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:52:38,152 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:52:38,153 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:52:38,153 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:52:44,376 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:52:44,376 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:52:44,379 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:52:44,380 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:52:44,382 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:53:34,618 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:53:34,624 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:53:34,624 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:53:34,624 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:53:34,626 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:53:34,627 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:53:34,829 - services.wallet_service - INFO - Wallet creation started for user: test_client
+2025-02-09 06:53:34,829 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 06:53:34,829 - services.wallet_service - ERROR - Failed to create wallet: 'NoneType' object has no attribute 'wallets'
+2025-02-09 06:53:34,830 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:53:34,830 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:53:34,831 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:53:34,832 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 06:53:40,207 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 06:53:40,206 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:53:40,216 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:53:40,217 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:53:40,218 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:56:02,634 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:56:48,202 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:57:14,269 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:57:53,522 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:58:14,077 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:58:27,314 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:58:57,076 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:59:18,295 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 06:59:31,292 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 06:59:31,300 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 06:59:31,301 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 06:59:31,301 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 06:59:31,304 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 06:59:31,307 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 06:59:33,632 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 06:59:33,705 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 06:59:33,705 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 06:59:34,251 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fdc3876c400>: Failed to establish a new connection: [Errno 111] Connection refused')': /platform/v1/wallets
+2025-02-09 06:59:36,454 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fdc3c1938b0>: Failed to establish a new connection: [Errno 111] Connection refused')': /platform/v1/wallets
+2025-02-09 06:59:36,736 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 06:59:36,740 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:59:36,741 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 06:59:36,742 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 06:59:40,655 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fdc3876c460>: Failed to establish a new connection: [Errno 111] Connection refused')': /platform/v1/wallets
+2025-02-09 06:59:43,863 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fdc3876c610>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-09 06:59:43,864 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 06:59:43,864 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 06:59:43,864 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 06:59:43,866 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:01:01,857 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:01:01,894 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:01:01,900 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:01:01,900 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:01:01,905 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:01:01,907 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:01:02,065 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:01:02,153 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:01:02,153 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:01:02,205 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fdc3876d300>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:01:04,212 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fdc3876db10>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:01:07,702 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:01:07,705 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:01:07,706 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:01:07,707 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:01:08,222 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fdc3c026800>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:01:08,234 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fdc3c026590>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)"))
+2025-02-09 07:01:08,234 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:01:08,235 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:01:08,235 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:01:08,238 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:03:11,587 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:03:18,200 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:03:18,208 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:03:18,209 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:03:18,209 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:03:18,211 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:03:18,213 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:03:21,781 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:03:21,858 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:03:21,858 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:03:21,881 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f103060c4c0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:03:23,638 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:03:23,642 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:03:23,643 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:03:23,645 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:03:23,887 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f10326cb3d0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:03:27,897 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f103060c520>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:03:27,909 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f103060c6d0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)"))
+2025-02-09 07:03:27,910 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:03:27,910 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:03:27,910 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:03:27,911 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:03:41,659 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:03:44,918 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:03:44,924 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:03:44,924 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:03:44,925 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:03:44,927 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:03:44,928 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:03:46,327 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:03:46,389 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:03:46,389 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:03:46,403 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f08147904c0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:03:51,152 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f081c8db3d0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:03:53,124 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:03:53,126 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:03:53,127 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:03:53,128 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:03:55,162 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f0814790520>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:03:55,173 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f08147906d0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)"))
+2025-02-09 07:03:55,174 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:03:55,174 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:03:55,175 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:03:55,176 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:04:28,650 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:04:46,664 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:04:49,364 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:04:49,371 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:04:49,371 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:04:49,371 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:04:49,374 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:04:49,375 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:04:51,493 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:04:51,559 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:04:51,559 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:04:51,565 - services.wallet_service - ERROR - Failed to create wallet: Could not parse the private key
+2025-02-09 07:04:51,565 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:04:51,565 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:04:51,567 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:04:51,568 - tests.websocket_test - ERROR - Error Message - Agent wallet creation failed
+2025-02-09 07:04:54,812 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:04:54,811 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:04:54,814 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:04:54,815 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:04:54,817 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:05:19,709 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:05:27,988 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:05:27,994 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:05:27,995 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:05:27,995 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:05:27,996 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:05:27,997 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:05:29,355 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:05:29,402 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:05:29,403 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:05:29,426 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f15305b8460>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:05:31,433 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f1533fe3910>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:05:36,238 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:05:36,242 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:05:36,243 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:05:36,245 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:05:38,108 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f15305b84c0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:05:38,125 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f15305b8670>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)"))
+2025-02-09 07:05:38,127 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:05:38,128 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:05:38,129 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:05:38,131 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:06:14,373 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:06:49,503 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:06:53,422 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:06:53,427 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:06:53,428 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:06:53,428 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:06:53,429 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:06:53,430 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:06:55,768 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:06:55,826 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:06:55,826 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:06:55,842 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fbee468c3a0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:06:57,849 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fbee5743340>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:06:58,891 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:06:58,893 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:06:58,893 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:06:58,894 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:07:01,862 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fbee468c400>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:07:01,873 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fbee468c5b0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)"))
+2025-02-09 07:07:01,874 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:07:01,874 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:07:01,875 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:07:01,876 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:07:18,088 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:07:42,143 - core.manager.agent - INFO - Initializing agent manager
+2025-02-09 07:24:13,830 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:24:15,758 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:24:15,792 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:24:15,792 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:24:15,840 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:24:15,873 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:24:18,433 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:24:18,573 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:24:18,573 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:24:21,534 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:24:21,568 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:24:21,571 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:24:21,573 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:26:42,859 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f30102b8490>: Failed to establish a new connection: [Errno 101] Network is unreachable')': /platform/v1/wallets
+2025-02-09 07:26:44,232 - tests.websocket_test - INFO - Connecting to URL: ws://localhost:8000/api/v1/ws/agent/test_client
+2025-02-09 07:26:45,068 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f3012375c90>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:26:49,083 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f3012376c20>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:26:49,106 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f30102b8580>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)"))
+2025-02-09 07:26:49,108 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:26:49,109 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:26:49,117 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:26:49,174 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 07:26:49,218 - api.websocket.routes - INFO - Disabled auth route is now active (using dummy users)
+2025-02-09 07:26:49,218 - api.websocket.routes - INFO - Running from: /home/degencodebeast/ETH-Globals-Agentic/backend/api/websocket/routes.py
+2025-02-09 07:26:49,219 - api.websocket.routes - INFO - User connected as: test_client
+2025-02-09 07:26:49,227 - tests.websocket_test - INFO - Connected successfully
+2025-02-09 07:26:49,229 - api.websocket.routes - INFO - Received message from test_client: {'type': 'strategy_select', 'data': {'strategy_id': 'eth-usdc-loop', 'initial_deposit': 100, 'parameters': {'collateralAmount': 100, 'maxLeverage': 3.0, 'minCollateralRatio': 1.5, 'targetApy': 10.0, 'rebalanceThreshold': 5.0, 'slippageTolerance': 0.5, 'riskLevel': 'Low'}}}
+2025-02-09 07:26:52,148 - services.wallet_service - INFO - CDP SDK has been successfully configured with CDP API key
+2025-02-09 07:26:52,259 - services.wallet_service - INFO - Creating wallet for user: test_client
+2025-02-09 07:26:52,260 - services.wallet_service - INFO - Network ID: base-sepolia
+2025-02-09 07:26:52,301 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f30102b9390>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:26:54,309 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f30102b9b40>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:26:54,780 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>
+2025-02-09 07:26:54,789 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:26:54,791 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() running at /home/degencodebeast/.cache/pypoetry/virtualenvs/src-x7N_glW9-py3.10/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /home/degencodebeast/.pyenv/versions/3.10.11/lib/python3.10/asyncio/tasks.py:475]>>
+2025-02-09 07:26:54,792 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() running at /home/degencodebeast/ETH-Globals-Agentic/backend/tests/websocket_test.py:53> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-09 07:26:58,328 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f3012527f40>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)")': /platform/v1/wallets
+2025-02-09 07:26:58,391 - services.wallet_service - ERROR - Failed to create wallet: HTTPSConnectionPool(host='api.cdp.coinbase.com', port=443): Max retries exceeded with url: /platform/v1/wallets (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f30123774f0>: Failed to resolve 'api.cdp.coinbase.com' ([Errno -2] Name or service not known)"))
+2025-02-09 07:26:58,391 - services.websocket - ERROR - Failed to create agent wallet: Wallet creation failed
+2025-02-09 07:26:58,392 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
+2025-02-09 07:26:58,392 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
+2025-02-09 07:26:58,397 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client

@@ -28,7 +28,7 @@ class VaultService:
         self.strategy_manager = StrategyManager(self.agent_manager)
         self.manager = manager  # Connection manager instance
 
-        #         # Load required environment variables:
+        ## Load required environment variables:
         # rpc_url = os.environ.get("WEB3_PROVIDER_URI")
         # factory_address = os.environ.get("VAULT_FACTORY_ADDRESS")
         # deployer_private_key = os.environ.get("CDP_API_KEY_PRIVATE_KEY")
