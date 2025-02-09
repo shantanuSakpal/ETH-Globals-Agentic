@@ -790,3 +790,4 @@ task: <Task pending name='Task-5' coro=<WebSocketTestClient._handle_messages() r
 2025-02-09 15:33:55,474 - services.websocket - ERROR - Strategy selection error: Agent wallet creation failed
 2025-02-09 15:33:55,474 - api.websocket.routes - INFO - Sending response to test_client: {'type': <WSMessageType.ERROR: 'error'>, 'data': {'message': 'Agent wallet creation failed'}}
 2025-02-09 15:33:55,476 - api.websocket.routes - INFO - WebSocket disconnected for user: test_client
+2025-02-09 16:42:48,855 - core.manager.agent - INFO - Initializing agent manager
